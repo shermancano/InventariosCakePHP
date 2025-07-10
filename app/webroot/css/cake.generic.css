@@ -1,0 +1,655 @@
+/**
+ *
+ * Generic CSS for CakePHP
+ *
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ *
+ * Licensed under The MIT License
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
+ * @package       cake
+ * @subpackage    cake.app.webroot.css
+ * @since         CakePHP(tm)
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ */
+
+* {
+	margin:0;
+	padding:0;
+}
+
+/** General Style Info **/
+body {
+	color: #FFFFFF;
+	font-family:'lucida grande', verdana, helvetica, arial, sans-serif;
+	font-size:70%;
+	margin: 0;
+	background-image: url(../img/bg.gif);
+	background-repeat:  repeat-x;
+}
+a {
+	color: #003d4c;
+	text-decoration: underline;
+	font-weight: bold;
+	
+}
+a:hover {
+	color: #367889;
+	text-decoration:none;
+	background:rgba(255,255,255,0.0);
+}
+a img {
+	border: medium none;
+}
+h1, h2, h3, h4 {
+	font-weight: normal;
+    margin-bottom: 0.5em;
+}
+h1 {
+	background: none repeat scroll 0 0 #FFFFFF;
+    color: #003D4C;
+    font-size: 100%;
+	
+}
+h2 {
+	background: none repeat scroll 0 0 #FFFFFF;
+	color:#FF0000;
+    font-family: 'Gill Sans','lucida grande',helvetica,arial,sans-serif;
+    font-size: 190%;
+}
+h3 {
+	background: none repeat scroll 0 0 #FFFFFF;
+    color: #233A69;
+    font-family: 'Gill Sans','lucida grande',helvetica,arial,sans-serif;
+    font-size: 190%;
+	
+}
+h4 {
+	color: #999933;
+    font-weight: normal;
+}
+ul, li {
+	margin: 0 12px;
+	
+}
+
+/** Layout **/
+#container {
+	text-align: left;
+}
+
+#header{
+	padding: 55px 20px;
+	background-repeat: no-repeat;
+	background-position:40px;
+}
+
+#header h1 {
+	line-height:20px;
+	text-align: right;
+	font-weight: bold;
+	width: 700px;
+	padding-top: 0px;
+	padding-right: 1%;
+	padding-bottom: 0px;
+	padding-left: 1px;
+	float: right;
+	color: #000000;
+	background:rgba(255,255,255,0.0);
+}
+#header h1 a {
+	color: #ff0000;
+	background: #003d4c;
+	background:rgba(255,255,255,0.0);
+	/*font-weight: normal;*/
+}
+#header h1 a:hover {
+	color: #fff;
+	background: #003d4c;
+	text-decoration: underline;
+}
+#content{
+	overflow: auto;
+	background: none repeat scroll 0 0 #FFFFFF;
+    clear: both;
+    color: #333333;
+    overflow: auto;
+    padding: 10px 20px 40px;
+
+}
+#footer {
+	clear: both;
+    padding: 6px 10px;
+    text-align: right;
+}
+
+/** containers **/
+div.form,
+div.index,
+div.view {
+	float:right;
+	width:76%;
+	border-left:1px solid #666;
+	padding:10px 2%;
+
+}
+div.actions {
+	float: left;
+    padding: 10px 1.5%;
+    width: 16%;
+}
+div.actions h3 {
+	padding-top:0;
+	color:#777;
+}
+
+
+/** Tables **/
+table {
+	background: none repeat scroll 0 0 #FFFFFF;
+    border-right: 0 none;
+    clear: both;
+    color: #333333;
+    margin-bottom: 10px;
+    width: 100%;
+	
+}
+th {
+	-moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: -moz-use-text-color -moz-use-text-color #555555;
+    border-style: none none solid;
+    border-width: 0 0 2px;
+    padding: 4px;
+    text-align: left;
+	
+}
+th a {
+	display: block;
+	padding: 2px 4px;
+	text-decoration: none;
+}
+th a.asc:after {
+	content: ' ⇣';
+}
+th a.desc:after {
+	content: ' ⇡';
+}
+table tr td {
+	background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom: 1px solid #DDDDDD;
+    padding: 6px;
+    text-align: left;
+    vertical-align: top;
+}
+table tr:nth-child(2n) td {
+	background: none repeat scroll 0 0 #F5F5F5;
+}
+table .altrow td {
+	background: none repeat scroll 0 0 #F5F5F5;
+}
+td.actions {
+	text-align: center;
+	white-space: nowrap;
+}
+table td.actions a {
+	margin: 0px 6px;
+	padding:2px 5px;
+}
+.cake-sql-log table {
+	background: #f4f4f4;
+}
+.cake-sql-log td {
+	padding: 4px 8px;
+	text-align: left;
+	font-family: Monaco, Consolas, "Courier New", monospaced;
+}
+.cake-sql-log caption {
+	color:#fff;
+}
+
+/** Paging **/
+div.paging {
+	background:#fff;
+	color: #ccc;
+	margin-top: 1em;
+	clear:both;
+}
+div.paging span.disabled {
+	color: #ddd;
+	display: inline;
+}
+div.paging span.current {
+	color: #c73e14;
+}
+div.paging span a {
+}
+
+/** Scaffold View **/
+dl {
+	line-height: 2em;
+	margin: 0em 0em;
+	width: 60%;
+}
+dl .altrow {
+	background: #f4f4f4;
+}
+dt {
+	font-weight: bold;
+	padding-left: 4px;
+	vertical-align: top;
+	width: 25em;
+}
+dd {
+	margin-left: 25em;
+	margin-top: -2em;
+	vertical-align: top;
+}
+
+/** Forms **/
+form {
+	clear: both;
+	margin-right: 20px;
+	padding: 0;
+	width: 95%;
+}
+fieldset {
+	border: 1px solid #ccc;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border-radius:8px;
+	margin-bottom: 1em;
+	padding: 16px 20px;
+}
+fieldset legend {
+	background:#fff;
+	color: #e32;
+	font-size: 160%;
+	font-weight: bold;
+}
+fieldset fieldset {
+	margin-top: 0px;
+	margin-bottom: 20px;
+	padding: 16px 10px;
+}
+
+fieldset fieldset legend {
+	font-size: 120%;
+	font-weight: normal;
+}
+fieldset fieldset div {
+	clear: left;
+	margin: 0 20px;
+}
+
+form div {
+	clear: both;
+	margin-bottom: 1em;
+	padding: .5em;
+	vertical-align: text-top;
+}
+form .input {
+	color: #444;
+}
+form .required {
+	font-weight: bold;
+}
+form .required label:after {
+	color: #e32;
+	content: '*';
+	display:inline;
+}
+form div.submit {
+	border: 0;
+	clear: both;
+	margin-top: 10px;
+}
+label {
+	display: block;
+	font-size: 110%;
+	margin-bottom:3px;
+}
+input, textarea {
+	clear: both;
+	font-size: 130%;
+	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+	padding: 0%;
+	width:553px;
+}
+select {
+	clear: both;
+	font-size: 130%;
+	vertical-align: text-bottom;
+}
+select[multiple=multiple] {
+	width: 100%;
+}
+option {
+	font-size: 120%;
+	padding: 0 3px;
+}
+input[type=checkbox] {
+	clear: left;
+	float: left;
+	margin: 0px 6px 7px 2px;
+	width: auto;
+}
+div.checkbox label {
+	display: inline;
+}
+
+input[type=radio] {
+	float:left;
+	width:auto;
+	margin: 0 3px 7px 0;
+}
+div.radio label {
+	margin: 0 0 6px 20px;
+}
+input[type=submit], input[type=button] {
+	display: inline;
+	font-size: 110%;
+	width: auto;
+	
+}
+form .submit input[type=submit], form .submit input[type=button] {
+	background: -moz-linear-gradient(center top , #66CC33, #66CC66) repeat scroll 0 0 #6698C4;
+    border-color: #006600;
+    color: #FFFFFF;
+    text-shadow: 0 1px 0 #009900;
+}
+form .submit input[type=submit]:hover, form .submit input[type=button]:hover{
+	background: -moz-linear-gradient(center top , #33CC33, #339900) repeat scroll 0 0 #6698C4;
+	
+}
+
+/** Notices and Errors **/
+div.message {
+	clear: both;
+	color: #fff;
+	font-size: 140%;
+	font-weight: bold;
+	margin: 0 0 1em 0;
+	background: #c73e14;
+	padding: 5px;
+	border: 1px solid #ccc;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border-radius:8px;
+
+}
+div.error-message {
+	clear: both;
+	color: #fff;
+	font-weight: bold;
+	background: #c73e14;
+	border: 1px solid #ccc;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border-radius:8px;
+	width: 545px;
+}
+p.error {
+	background-color: #e32;
+	color: #fff;
+	font-family: Courier, monospace;
+	font-size: 120%;
+	line-height: 140%;
+	padding: 0.8em;
+	margin: 1em 0;
+}
+p.error em {
+	color: #000;
+	font-weight: normal;
+	line-height: 140%;
+}
+.notice {
+	background: #ffcc00;
+	color: #000;
+	display: block;
+	font-family: Courier, monospace;
+	font-size: 120%;
+	line-height: 140%;
+	padding: 0.8em;
+	margin: 1em 0;
+}
+.success {
+	background: green;
+	color: #fff;
+}
+
+/**  Actions  **/
+div.actions ul {
+	margin: 0;
+	padding: 0;
+}
+div.actions li {
+	margin:0 0 0.5em 0;
+	list-style-type: none;
+	white-space: nowrap;
+	padding: 0;
+}
+div.actions ul li a {
+	font-weight: normal;
+	display: block;
+	clear: both;
+}
+div.actions ul li a:hover {
+	text-decoration: underline;
+}
+
+div.actions ul ul {
+	margin: 0;
+	padding: 0;
+}
+
+div.actions ul ul li {
+	margin:0 0 0.5em 60px;
+	list-style-type: none;
+	white-space: nowrap;
+	padding: 0;
+}
+
+input[type=submit],
+input[type=button],
+div.actions ul li a,
+td.actions a {
+	/*background: -moz-linear-gradient(center top , #66CC33, #66CC33) repeat scroll 0 0 #6698C4;
+	border: 1px solid #006600;
+	border-radius: 8px 8px 8px 8px;
+	color: #FFFFFF;
+	font-weight: bold;
+	min-width: 0;
+	padding: 4px 8px;
+	text-decoration: none;
+	text-shadow: 0 1px 0 #009900;*/
+	
+	font-weight:bold;
+	padding: 4px 8px;
+	background: #dcdcdc;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#66CC33), to(#66CC33));
+	background-image: -webkit-linear-gradient(top, #66CC33, #66CC33);
+	background-image: -moz-linear-gradient(top, #66CC33, #66CC33);
+	background-image: -ms-linear-gradient(top, #66CC33, #66CC33);
+	background-image: -o-linear-gradient(top, #66CC33, #66CC33);
+	background-image: linear-gradient(top, #66CC33, #66CC33);
+	color:#FFFFFF;
+	border:1px solid #006600;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-radius: 8px;
+	text-decoration: none;
+	text-shadow: 0 1px 0 #009900;;
+	min-width: 0;
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0px 1px 1px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0px 1px 1px rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0px 1px 1px rgba(0, 0, 0, 0.2);
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+input[type=submit]:hover,
+input[type=button]:hover,
+div.actions ul li a:hover,
+td.actions a:hover {
+	/*background: -moz-linear-gradient(center top , #33CC33, #339900) repeat scroll 0 0 #C9E2F8;
+    border-color: #006600;
+    color: #FFFFFF;
+    text-shadow: 0 1px 0 #009900;*/
+	
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#33CC00), to(#339900));
+	background-image: -webkit-linear-gradient(top, #33CC00, #339900);
+	background-image: -moz-linear-gradient(top, #33CC00, #339900);
+	background-image: -ms-linear-gradient(top, #33CC00, #339900);
+	background-image: -o-linear-gradient(top, #33CC00, #339900);
+	background-image: linear-gradient(top, #33CC00, #339900);
+	border-color: #006600;
+    color: #FFFFFF;
+    text-shadow: 0 1px 0 #009900;
+}
+
+/** Related **/
+div.related {
+	clear: both;
+	display: block;
+}
+
+/** Debugging **/
+pre {
+	color: #000;
+	background: #f0f0f0;
+	padding: 1em;
+}
+pre.cake-debug {
+	background: #ffcc00;
+	font-size: 120%;
+	line-height: 140%;
+	margin-top: 1em;
+	overflow: auto;
+	position: relative;
+}
+div.cake-stack-trace {
+	background: #fff;
+	color: #333;
+	margin: 0px;
+	padding: 6px;
+	font-size: 120%;
+	line-height: 140%;
+	overflow: auto;
+	position: relative;
+}
+div.cake-code-dump pre {
+	position: relative;
+	overflow: auto;
+}
+div.cake-stack-trace pre, div.cake-code-dump pre {
+	color: #000;
+	background-color: #F0F0F0;
+	margin: 0px;
+	padding: 1em;
+	overflow: auto;
+}
+div.cake-code-dump pre, div.cake-code-dump pre code {
+	clear: both;
+	font-size: 12px;
+	line-height: 15px;
+	margin: 4px 2px;
+	padding: 4px;
+	overflow: auto;
+}
+div.cake-code-dump span.code-highlight {
+	background-color: #ff0;
+	padding: 4px;
+}
+div.code-coverage-results div.code-line {
+	padding-left:5px;
+	display:block;
+	margin-left:10px;
+}
+div.code-coverage-results div.uncovered span.content {
+	background:#ecc;
+}
+div.code-coverage-results div.covered span.content {
+	background:#cec;
+}
+div.code-coverage-results div.ignored span.content {
+	color:#aaa;
+}
+div.code-coverage-results span.line-num {
+	color:#666;
+	display:block;
+	float:left;
+	width:20px;
+	text-align:right;
+	margin-right:5px;
+}
+
+div.code-coverage-results span.line-num strong {
+	color:#666;
+}
+div.code-coverage-results div.start {
+	border:1px solid #aaa;
+	border-width:1px 1px 0px 1px;
+	margin-top:30px;
+	padding-top:5px;
+}
+div.code-coverage-results div.end {
+	border:1px solid #aaa;
+	border-width:0px 1px 1px 1px;
+	margin-bottom:30px;
+	padding-bottom:5px;
+}
+div.code-coverage-results div.realstart {
+	margin-top:0px;
+}
+div.code-coverage-results p.note {
+	color:#bbb;
+	padding:5px;
+	margin:5px 0 10px;
+	font-size:10px;
+}
+div.code-coverage-results span.result-bad {
+	color: #a00;
+}
+div.code-coverage-results span.result-ok {
+	color: #fa0;
+}
+div.code-coverage-results span.result-good {
+	color: #0a0;
+}
+
+/** Elements **/
+#url-rewriting-warning {
+	display: none;
+}
+#imagen_login {
+	background-image: url(../img/candado.png);
+	background-repeat: no-repeat;
+	height: 100px;
+	width: 100px;
+	left: 20%;
+	top: 10px;
+	bottom: 50%;
+}
+#LoginUsuaUsername{
+	width:553px;
+}
+
+#LoginUsuaUsername{
+	width:553px;
+}
+
+
+#flashMessage {
+width:555px;
+margin-left:380px;
+text-align:center;
+}

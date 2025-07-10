@@ -1,0 +1,221 @@
+.file_conf {
+	width: 265px;
+}
+
+.input a {
+	padding: 20px;
+}
+
+.method_name {
+    display: block;
+    margin-bottom: 1px;
+	text-align: left;
+}
+
+.controller_name {
+	cursor: pointer;
+}
+
+.detalle_form tr:nth-child(2n) td {
+	background: none;
+}
+
+.detalle_form th {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: -moz-use-text-color -moz-use-text-color #555555;
+    border-style: none none solid;
+    border-width: 0 0 2px;
+    padding: 6px;
+    text-align: left;
+	border-bottom: 0px;
+}
+
+
+#table_resumen tr:nth-child(2n) td {
+	background: none;
+}
+
+#td_valor_neto {
+	text-align: right;
+}
+
+#td_iva {
+	text-align: right;
+}
+
+#td_total {
+	text-align: right;
+}
+
+#table_resumen {
+	width: 240px;
+	margin-left: 600px;
+}
+
+.resumen_right {
+	text-align: right;
+}
+
+.detalle_form input {
+	width: 214px;
+}
+
+.detalle_form select {
+	width: 218px;
+}
+
+.detalle_form input[type="button"] {
+	width: 80px;
+}
+
+.detalle_form tr td {
+	border-bottom: 0px;
+}
+
+#detalle_form tr td {
+	border-bottom: 0px;
+}
+
+#table_resumen th p {
+	text-align: right;
+}
+
+#avisos tr:nth-child(2n) td {
+	background: none;
+}
+
+#avisos td {
+	border-bottom: 0px;
+	padding: 1px;
+}
+
+#table_rechazo tr:nth-child(2n) td {
+	background: none;
+}
+
+#table_rechazo td {
+	border-bottom: 0px;
+	padding: 1px;
+}
+
+#span_rechazo label:after {
+    color: #EE3322;
+    content: "*";
+    display: inline;
+}
+
+#span_rechazo label {
+    display: block;
+    font-size: 100%;
+    margin-bottom: 3px;
+	font-weight: bold;
+}
+
+#table_detalle input {
+	width: 50px;
+	font-size: 100%;
+}
+
+dd {
+    width: 67em;
+	margin-left: 18em;
+}
+
+dd th {
+    padding: 0px;
+}
+
+dt {
+    width: 18em;
+}
+
+#table_resumen_cal {
+	width: 240px;
+	margin-left: 690px;
+}
+
+#table_resumen th {
+	padding: 0px;
+}
+
+#entradas_view{
+	width="100%";
+}
+
+#entradas_view dd {
+    width: 67em;
+	margin-left: 18em;
+}
+
+#entradas_view dd th {
+    padding: 0px;
+}
+
+#entradas_view dt {
+    width: 18em;
+}
+
+.contenido_wizard table tr:nth-child(2n) td {
+    background: none;
+}
+
+.contenido_wizard  table tr td  {
+	border-bottom: 0px;
+}
+
+.contenido_wizard  table tr .fieldset_radio {	
+    border-bottom: 1px solid #FFF;
+}
+
+.contenido_wizard  fieldset .legend_wizard {
+	background:#fff;
+	color: #e32;
+	font-size: 120%;
+	font-weight: bold;	
+}
+
+table tr .button_align {
+	text-align:right;	
+}
+
+.instrucciones_depr {
+    padding: 16px 20px;
+}
+
+#form_main table tr td {
+	background:#FFFFFF;
+	border-bottom:#FFF;
+}
+
+#tabla_bajas tr td {
+	background:#FFFFFF;
+	border-bottom:#FFF;
+}
+
+#tabla_bajas_footer tr td {
+	background:#FFFFFF;
+	border-bottom:#FFF;
+}
+
+table tr .td_sub {
+	padding-left:25px;
+}
+
+.cod_barra_tit #tit {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #FF0000;
+    font-family: 'Gill Sans','lucida grande',helvetica,arial,sans-serif;
+    font-size: 190%;
+    font-weight: normal;
+    margin-bottom: 0.5em;
+}
+
+.cod_barra_tit #exportar {
+	float:right;
+	margin-bottom: 10px;
+}
+
