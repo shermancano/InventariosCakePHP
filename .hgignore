@@ -1,0 +1,13 @@
+syntax: glob
+app/config/database.php
+app/config/core.php
+*.xls
+*.pdf
+*.bak
+*.log
+*.orig
+app/webroot/files/cod_barra/*.png
+app/webroot/files/log*
+app/tmp
+app/tests
+app/tmp/logs/debug.log
