@@ -1,9 +1,9 @@
-<script language="Javascript" type="text/javascript" src="/js/responsables/add.js"></script>
+<script language="Javascript" type="text/javascript" src="/js/encargado_establecimiento/add.js"></script>
 
 <div class="responsables form">
-<?php echo $this->Form->create('Responsable');?>
+<?php echo $this->Form->create('EncargadoEstablecimiento');?>
 	<fieldset>
-		<legend><?php __(utf8_encode('Nuevo Responsable Centro Costo')); ?></legend>
+		<legend><?php __(utf8_encode('Nuevo Director Establecimiento')); ?></legend>
 	<?php
 		echo $this->Form->input('ceco_id', array('label' => 'Centro de Costo', 'options' => $centros_costos));
 		echo $this->Form->input('usua_id', array('type' => 'hidden'));

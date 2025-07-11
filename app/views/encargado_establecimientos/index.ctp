@@ -1,5 +1,5 @@
 <div class="gastos index">
-	<h2><?php __('Responsables Centro Costo');?></h2>
+	<h2><?php __('Director Establecimiento');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('Centro de Costo', 'ceco_nombre');?></th>
@@ -21,8 +21,8 @@
 		<td><?php echo $resp['Usuario']['usua_nombre']; ?>&nbsp;</td>
 		<td><?php echo $resp['EstadoRegistro']['esre_nombre']; ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('Editar', true), array('action' => 'edit', $resp['Responsable']['resp_id'])); ?>
-			<?php echo $this->Html->link(__('Eliminar', true), array('action' => 'delete', $resp['Responsable']['resp_id']), null, __('La accion eliminara el responsable asociado al Centro de Costo, esta seguro que desea continuar?', true)); ?>
+			<?php echo $this->Html->link(__('Editar', true), array('action' => 'edit', $resp['EncargadoEstablecimiento']['enes_id'])); ?>
+			<?php echo $this->Html->link(__('Eliminar', true), array('action' => 'delete', $resp['EncargadoEstablecimiento']['enes_id']), null, __('La accion eliminara al director asociado al Centro de Costo, esta seguro que desea continuar?', true)); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -30,7 +30,7 @@
 	<p>
 	<?php
 	echo $this->Paginator->counter(array(
-	'format' => __(utf8_encode('Página %page% de %pages%, mostrando %current% registros de un total de %count% total, empezando en %start%, terminando en %end%'), true)
+	'format' => __(utf8_encode('Pagina %page% de %pages%, mostrando %current% registros de un total de %count% total, empezando en %start%, terminando en %end%'), true)
 	));
 	?>	</p>
 

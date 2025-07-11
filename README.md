@@ -22,6 +22,15 @@ git config --replace-all user.name "github_username"
 Permisos git
 git config core.fileMode false
 ```
+## BACKUP BD SERVIDOR DAEM
+```
+/usr/local/pgsql/bin/pg_dump -h localhost -p 5433 -U postgres -W invarauco > /home/respaldos_invarauco/backupinvarauco10072022_1738.sql
+```
+
+## ACCESO A POSTGRES EN SERVIDOR
+```
+/opt/PostgreSQL/9.3/bin/psql -p 5433 -U postgres
+```
 
 ## Instalar docker-compose
 `https://docs.docker.com/engine/install/ubuntu/`

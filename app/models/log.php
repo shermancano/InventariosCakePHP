@@ -34,5 +34,16 @@ class Log extends AppModel {
 			throw new Exception("No se puede guardar en el log");
 		}
 	}
+	
+	function getAcciones() {
+		$acciones = $this->query("SELECT distinct logs_accion FROM logs group by logs_accion;");
+		$data = array();
+		foreach($acciones as $accion) {
+			$accion = array_pop($accion);
+			$data[$accion['logs_accion']] = $accion['logs_accion'];
+		}
+
+		return $data;
+	}
 }
 ?>

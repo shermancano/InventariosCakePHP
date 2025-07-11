@@ -242,6 +242,7 @@ class Reporte extends AppModel {
 					  ,count(*) as total
 					  ,depe.ceco_nombre as dependencia
 					  ,esta.ceco_nombre as establecimiento
+					  ,ubaf.ubaf_fecha_adquisicion
 				from ubicaciones_activos_fijos as ubaf
 				left join centros_costos as ceco using (ceco_id)
 				left join productos as prod using (prod_id)
@@ -272,10 +273,68 @@ class Reporte extends AppModel {
 						,ubaf.ubaf_serie
 						,depe.ceco_nombre
 						,esta.ceco_nombre
+						,ubaf.ubaf_fecha_adquisicion
 				order by ceco.ceco_nombre
 						,prod.prod_nombre asc";
 		$res = $this->query($sql);
 		return $res;		
+	}
+
+	function activosFijosGeneralMigracion($ceco_id) {
+		$sql = "select ceco.ceco_id
+		              ,ceco.ceco_nombre
+				      ,prod.prod_nombre
+					  ,tibi.tibi_nombre
+					  ,fami.fami_nombre
+					  ,grup.grup_nombre
+					  ,ubaf.ubaf_precio
+					  ,prop.prop_nombre
+					  ,situ.situ_nombre
+					  ,marc.marc_nombre
+					  ,colo.colo_nombre
+					  ,mode.mode_nombre
+					  ,ubaf.ubaf_serie
+					  ,ubaf.ubaf_codigo
+					  ,ubaf.ubaf_vida_util
+					  ,depe.ceco_nombre as dependencia
+					  ,esta.ceco_nombre as establecimiento
+				from ubicaciones_activos_fijos as ubaf
+				left join centros_costos as ceco on (ceco.ceco_id = ubaf.ceco_id) 
+				left join productos as prod on (prod.prod_id = ubaf.prod_id)
+				left join propiedades as prop on (prop.prop_id = ubaf.prop_id)
+				left join situaciones as situ on (situ.situ_id = ubaf.situ_id)
+				left join marcas as marc on (marc.marc_id = ubaf.marc_id)
+				left join colores as colo on (colo.colo_id = ubaf.colo_id)
+				left join modelos as mode on (mode.mode_id = ubaf.mode_id)
+				left join grupos as grup using (grup_id)
+				left join familias as fami using (fami_id)
+				left join tipos_bienes as tibi using (tibi_id)
+				left join centros_costos as depe on (ceco.ceco_id_padre = depe.ceco_id)
+				left join centros_costos as esta on (depe.ceco_id_padre = esta.ceco_id)
+				where tibi.tibi_id = 1
+				and ceco.ceco_id in (".implode(",", $ceco_id).")
+				order by ceco.ceco_nombre
+						,prod.prod_nombre asc";
+		$res = $this->query($sql);
+		return $res;
+	}
+
+	function findDetalleActivo($ubaf_codigo = null) {
+		$sql = "select deaf_codigo
+					,activo_fijo.acfi_orden_compra
+					,activo_fijo.acfi_nro_documento
+					,activo_fijo.acfi_fecha_documento
+					,prov.prov_nombre as nombre_proveedor
+					,prov.prov_rut as rut_proveedor
+					,detalle.deaf_fecha_adquisicion
+				from detalle_activos_fijos as detalle
+				inner join activos_fijos as activo_fijo on (activo_fijo.acfi_id = detalle.acfi_id)
+				left join proveedores as prov on (prov.prov_id = activo_fijo.prov_id)
+				where deaf_codigo = '".$ubaf_codigo."'
+				order by activo_fijo.acfi_fecha asc
+				limit 1;";
+		$res = $this->query($sql);
+		return $res;
 	}
 	
 	function TrasladosPorFecha($ceco_id, $ceco_id_hijo = null, $tibi_id, $fecha_desde, $fecha_hasta) {

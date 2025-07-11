@@ -5,7 +5,65 @@ class UsuariosController extends AppController {
 
 	function index() {
 		$this->Usuario->recursive = 0;
-		$this->set('usuarios', $this->paginate());
+
+		if (!empty($this->data)) {
+			$this->params['named']['page'] = 1;
+			$criterio = trim($this->data['Usuario']['busqueda']);
+			$opcion = $this->data['Usuario']['opcion'];
+			$this->Session->write('userdata.criterio_usuario', $criterio);
+			$this->Session->write('userdata.opcion_usuario', $opcion);
+
+			if ($opcion == 1) {
+				$conds = array(
+					'AND' => array(
+						'Usuario.usua_nombre ilike' => '%'.$criterio.'%'					
+					)
+				);
+			} else {
+				$conds = array(
+					'AND' => array(
+						'Usuario.usua_rut ilike' => '%'.$criterio.'%'					
+					)
+				);
+			}
+			
+			$usuarios = $this->paginate('Usuario', $conds);
+		} else {
+			$criterio = '';
+			$opcion = '';
+			$conds = null;
+
+			if (isset($this->params['named']['page'])) {				
+				$criterio = $this->Session->read('userdata.criterio_usuario');
+				$opcion = $this->Session->read('userdata.opcion_usuario');
+
+				if (isset($criterio) && isset($opcion)) {
+					if ($opcion == 1) {
+						$conds = array(
+							'AND' => array(
+								'Usuario.usua_nombre ilike' => '%'.$criterio.'%'					
+							)
+						);
+					} else {
+						$conds = array(
+							'AND' => array(
+								'Usuario.usua_rut ilike' => '%'.$criterio.'%'					
+							)
+						);
+					}
+				}				
+			} else {
+				// Eliminamos session cuando se presiona paginate sin filtros (index)
+				$this->Session->delete('userdata.criterio_usuario');
+				$this->Session->delete('userdata.opcion_usuario');
+			}
+			
+			$usuarios = $this->paginate('Usuario', $conds);
+		}
+
+		$this->set('usuarios', $usuarios);
+		$this->set('criterio', $criterio);
+		$this->set('opcion', $opcion);
 	}
 
 	function add() {
@@ -212,6 +270,69 @@ class UsuariosController extends AppController {
 					'lower(Producto.prod_nombre) ilike' => '%'.strtolower($criterio).'%'
 				)
 			);
+		} else if ($opcion == 5) { // Modelo
+			$conds = array(
+				'AND' => array(
+					'UbicacionActivoFijo.ceco_id' => $arrayCentrosCostos					
+				),
+				'OR' => array(						 
+					'lower(Modelo.mode_nombre) ilike' => '%'.strtolower($criterio).'%'
+				)
+			);
+		} else if ($opcion == 6) { // Marca
+			$conds = array(
+				'AND' => array(
+					'UbicacionActivoFijo.ceco_id' => $arrayCentrosCostos					
+				),
+				'OR' => array(						 
+					'lower(Marca.marc_nombre) ilike' => '%'.strtolower($criterio).'%'
+				)
+			);
+		} else if ($opcion == 7) { // Color
+			$conds = array(
+				'AND' => array(
+					'UbicacionActivoFijo.ceco_id' => $arrayCentrosCostos					
+				),
+				'OR' => array(						 
+					'lower(Color.colo_nombre) ilike' => '%'.strtolower($criterio).'%'
+				)
+			);
+		} else if ($opcion == 8) { // Serie
+			$conds = array(
+				'AND' => array(
+					'UbicacionActivoFijo.ceco_id' => $arrayCentrosCostos					
+				),
+				'OR' => array(
+					'UbicacionActivoFijo.ubaf_serie ilike' => '%'.$criterio.'%'						
+				)
+			);
+		} else if ($opcion == 9) { // Financiamiento
+			$conds = array(
+				'AND' => array(
+					'UbicacionActivoFijo.ceco_id' => $arrayCentrosCostos					
+				),
+				'OR' => array(
+					'Financiamiento.fina_nombre ilike' => '%'.$criterio.'%'						
+				)
+			);
+		} else if ($opcion == 10) { // Nro resolucion
+			$conds = array(
+				'AND' => array(
+					'UbicacionActivoFijo.ceco_id' => $arrayCentrosCostos					
+				),
+				'OR' => array(
+					'ActivoFijo.acfi_numero_resolucion ilike' => '%'.$criterio.'%'						
+				)
+			);
+		} else if ($opcion == 11) { // Nro resolucion
+			$conds = array(
+				'AND' => array(
+					'UbicacionActivoFijo.ceco_id' => $arrayCentrosCostos					
+				),
+				'OR' => array(
+					'Proveedor.prov_nombre ilike' => '%'.$criterio.'%'						
+				)
+			);
 		}
 
 		return $conds;
@@ -272,6 +393,22 @@ class UsuariosController extends AppController {
 					'conditions' => array(
 						'DetalleActivoFijo.acfi_id = ActivoFijo.acfi_id'							
 					)
+				),
+				array(
+					'alias' => 'Financiamiento',
+					'table' => 'financiamientos',
+					'type' => 'left',
+					'conditions' => array(
+						'ActivoFijo.fina_id = Financiamiento.fina_id'							
+					)
+				),
+				array(
+					'alias' => 'Proveedor',
+					'table' => 'proveedores',
+					'type' => 'left',
+					'conditions' => array(
+						'ActivoFijo.prov_id = Proveedor.prov_id'							
+					)
 				)
 			),
 			'fields' => array(
@@ -282,7 +419,13 @@ class UsuariosController extends AppController {
 				'Producto.prod_nombre',
 				'ActivoFijo.acfi_id',
 				'ActivoFijo.acfi_nro_documento',
-				'ActivoFijo.acfi_orden_compra'
+				'ActivoFijo.acfi_orden_compra',
+				'Modelo.mode_nombre',
+				'Marca.marc_nombre',
+				'Color.colo_nombre',
+				'UbicacionActivoFijo.ubaf_serie',
+				'Financiamiento.fina_nombre',
+				'Proveedor.prov_nombre'
 			),
 			'conditions' => $conds
 		);

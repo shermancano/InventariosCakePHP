@@ -110,6 +110,86 @@ class CentroCosto extends AppModel {
 		
 		return $ret;		
 	}
+
+	function buscaEncargadoDependencia($ceco_id) {
+		$sql = "select usua_nombre
+					  ,ceco_id_padre
+				from centros_costos as CentroCosto
+				left join encargado_dependencias as Responsable using (ceco_id)
+				left join usuarios as Usuario using (usua_id)
+				where ceco_id = ".$ceco_id;
+
+		$res = $this->query($sql);
+		$ret = "";
+
+		foreach ($res as $row) {
+			$row = array_pop($row);
+
+			if ($row['usua_nombre'] == "") {
+				if ($row['ceco_id_padre'] != "") {
+					$ret .= $this->buscaEncargadoDependencia($row['ceco_id_padre']);
+				}
+			} else {
+				$ret .= $row['usua_nombre'].",";
+			}
+		}
+
+		return $ret;
+	}
+
+	function buscaEncargadoInventario($ceco_id) {
+		$sql = "select usua_nombre
+					  ,ceco_id_padre
+				from centros_costos as CentroCosto
+				left join encargado_inventarios as Responsable using (ceco_id)
+				left join usuarios as Usuario using (usua_id)
+				where ceco_id = ".$ceco_id;
+				
+		$res = $this->query($sql);
+		$ret = "";
+
+		foreach ($res as $row) {
+			$row = array_pop($row);
+			if ($row['usua_nombre'] == "") {
+				if ($row['ceco_id_padre'] != "") {
+					$ret .= $this->buscaEncargadoInventario($row['ceco_id_padre']);
+				}
+			} else {
+				$ret .= $row['usua_nombre'].",";
+			}			
+
+		}
+
+		return $ret;
+	}
+
+	function buscaEncargadoEstablecimiento($ceco_id) {
+		$sql = "select usua_nombre
+					  ,ceco_id_padre
+				from centros_costos as CentroCosto
+				left join encargado_establecimientos as Responsable using (ceco_id)
+				left join usuarios as Usuario using (usua_id)
+				where ceco_id = ".$ceco_id;
+
+
+		$res = $this->query($sql);
+		$ret = "";
+		
+		foreach ($res as $row) {
+			$row = array_pop($row);
+
+			if ($row['usua_nombre'] == "") {
+				if ($row['ceco_id_padre'] != "") {
+					$ret .= $this->buscaEncargadoEstablecimiento($row['ceco_id_padre']);
+				}
+			} else {
+				$ret .= $row['usua_nombre'].",";
+			}
+
+		}
+		
+		return $ret;		
+	}
 	
 	function findCentroCostoPadrePaint($ceco_id) {
 		$sql = "select hijo.ceco_id,

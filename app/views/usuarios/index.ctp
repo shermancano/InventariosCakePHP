@@ -1,5 +1,49 @@
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		$('#btn_limpiar').click(function(event) {
+			location.href = '/usuarios/index';
+		});
+
+		<?php
+			if (!empty($criterio) && !empty($opcion)) {
+		?>
+				$('#codigo').val('<?php echo $criterio;?>');
+				$('#UsuarioOpcion'+<?php echo $opcion;?>).attr('checked', true);
+		<?php
+			}
+		?>
+	});
+</script>
 <div class="usuarios index">
 	<h2><?php __('Usuarios');?></h2>
+	<fieldset>
+        <legend><?php __(utf8_encode('Búsqueda'));?></legend>
+        <?php echo $this->Form->create('Usuario', array('id' => 'Usuarios', 'url' => '/usuarios/index'));?>
+            <table width="100%" id="tabla_busqueda">
+                <tbody>
+                    <tr>
+                        <td style="border-bottom:none;">
+                            <?php 
+                                echo $this->Form->input('opcion', array('type' => 'radio', 'options' => array(1 => 'Nombre', 2 => 'Rut'), 'value' => 1, 'legend' => false));
+                            ?>
+                        </td>
+                    </tr>
+					<tr>
+						<td style="width:65%; vertical-align:bottom; border-bottom: medium none; background: none;">
+							<span id="span_criterio" class="input select required">
+                                <label>Ingrese Criterio</label>
+                                <input type="text" id="codigo" style="width:600px;" name="data[Usuario][busqueda]" />                                 
+                            </span>
+                        </td>
+                        <td class="td_btn actions" style="vertical-align:bottom; padding: 9px 0px; border-bottom: medium none; background: none;">                            
+                            <input type="submit" value="Buscar" id="btn_buscar" />
+                            <input type="button" value="Ver Todo" id="btn_limpiar" />
+                        </td>
+                    </tr>                    
+                </tbody>
+            </table>
+			<?php echo $this->Form->end(); ?>
+    	</fieldset>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('Perfil', 'perf_nombre');?></th>

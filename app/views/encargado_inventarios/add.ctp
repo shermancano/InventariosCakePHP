@@ -1,9 +1,9 @@
-<script language="Javascript" type="text/javascript" src="/js/responsables/add.js"></script>
+<script language="Javascript" type="text/javascript" src="/js/encargado_inventario/add.js"></script>
 
 <div class="responsables form">
-<?php echo $this->Form->create('Responsable');?>
+<?php echo $this->Form->create('EncargadoInventario');?>
 	<fieldset>
-		<legend><?php __(utf8_encode('Nuevo Responsable Centro Costo')); ?></legend>
+		<legend><?php __(utf8_encode('Nuevo Encargado Inventario')); ?></legend>
 	<?php
 		echo $this->Form->input('ceco_id', array('label' => 'Centro de Costo', 'options' => $centros_costos));
 		echo $this->Form->input('usua_id', array('type' => 'hidden'));

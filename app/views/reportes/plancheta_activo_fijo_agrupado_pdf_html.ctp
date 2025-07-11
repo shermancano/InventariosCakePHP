@@ -8,7 +8,7 @@
 </style>
 <html>
 	<title>&nbsp;</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    	<meta charset="UTF-8">
 <body>
 <table border="0" width="100%" height="30%">
 	<tr>
@@ -39,10 +39,6 @@
 	
 ?>
 <table border="1" width="100%" cellpadding="2" cellspacing="2" bordercolor="#000000" style="border-collapse:collapse; font-size:12px;">
-	<tr valign="top">
-    	<td width="20%"><strong>Nombre Funcionario </strong></td>
-        <td width="80%"><?php echo utf8_decode(substr($busca_responsables, 0, strlen($busca_responsables) - 1));?></td>
-	</tr>
     <tr>
         <td width="20%"><strong>Centro de Costo/Salud</strong></td>
     	<td width="80%"><?php echo utf8_decode($info_cc['CentroCosto']['ceco_nombre']); ?></td>
@@ -83,14 +79,36 @@
     </tr>
 </table>
 <table border="0" width="100%">
-	<tr>
+    <tr>
+    	<td align="center"><?php echo utf8_decode(substr($buscaEncargadoDependencia, 0, strlen($buscaEncargadoDependencia) - 1)); ?></td>
+        <td align="center"><?php echo utf8_decode(substr($buscaEncargadoInventario, 0, strlen($buscaEncargadoInventario) - 1)); ?></td>
+    </tr>
+    <tr>
     	<td align="center">______________________________________</td>
         <td align="center">______________________________________</td>
     </tr>
     <tr>
-    	<td align="center"><strong>Encargado de Inventarios</strong></td>
-        <td align="center"><strong><?php echo utf8_decode(substr($busca_responsables, 0, strlen($busca_responsables) - 1)); ?></strong></td>
+    	<td align="center"><strong>Encargado de Dependencia</strong></td>
+        <td align="center"><strong>Encargado de Inventarios</strong></td>
     </tr>
-</table>     
+</table>
+<br><br><br>
+<table border="0" width="100%">
+    <tr>
+    	<td width="25%"></td>
+        <td align="center"><?php echo utf8_decode(substr($buscaEncargadoEstablecimiento, 0, strlen($buscaEncargadoEstablecimiento) - 1)); ?></td>
+        <td width="25%"></td>
+    </tr>
+    <tr>
+    	<td width="25%"></td>
+        <td align="center">______________________________________</td>
+        <td width="25%"></td>
+    </tr>
+    <tr>
+    	<td width="25%"></td>
+        <td align="center"><strong>Director de Establecimiento</strong></td>
+        <td width="25%"></td>
+    </tr>
+</table>      
 </body>
 </html>

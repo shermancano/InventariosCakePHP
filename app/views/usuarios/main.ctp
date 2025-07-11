@@ -24,7 +24,7 @@
                     <tr>
                         <td>
                             <?php 
-                                echo $this->Form->input('opcion', array('type' => 'radio', 'options' => array(1 => 'Número de Factura', 2 => 'Orden de Compra', 3 => 'Código de Barra', 4 => 'Nombre Producto'), 'value' => 1, 'legend' => false));
+                                echo $this->Form->input('opcion', array('type' => 'radio', 'options' => array(1 => 'Número de Factura', 2 => 'Orden de Compra', 3 => 'Código de Barra', 4 => 'Nombre Producto', 5 => 'Modelo', 6 => 'Marca', 7 => 'Color', 8 => 'Serie', 9 => 'Financiamiento', 10 => 'Nro Resolución', 11 => 'Proveedor'), 'value' => 1, 'legend' => false));
                             ?>
                         </td>
                     </tr>

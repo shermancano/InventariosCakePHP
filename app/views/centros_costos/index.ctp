@@ -1,5 +1,41 @@
+<script language="javascript" type="text/javascript">
+	$(document).ready(function () {
+		$('#btn_limpiar').click(function(event) {
+			location.href = '/centros_costos/index';
+		});
+
+		<?php
+			if (!empty($criterio)) {
+		?>
+				$('#codigo').val('<?php echo $criterio;?>');
+		<?php
+			}
+		?>
+	});
+</script>
 <div class="gastos index">
-	<h2><?php __('Centros de Salud/Costos');?></h2>
+	<h2><?php __('Centros de Costos');?></h2>
+	<fieldset>
+        <legend><?php __(utf8_encode('Búsqueda'));?></legend>
+        <?php echo $this->Form->create('CentroCosto', array('id' => 'CentrosCostos', 'url' => '/centros_costos/index'));?>
+            <table width="100%" id="tabla_busqueda">
+                <tbody>
+					<tr>
+						<td style="width:65%; vertical-align:bottom; border-bottom: medium none; background: none;">
+							<span id="span_criterio" class="input select required">
+                                <label>Ingrese Criterio</label>
+                                <input type="text" id="codigo" style="width:600px;" name="data[CentroCosto][busqueda]" />                                 
+                            </span>
+                        </td>
+                        <td class="td_btn actions" style="vertical-align:bottom; padding: 9px 0px; border-bottom: medium none; background: none;">                            
+                            <input type="submit" value="Buscar" id="btn_buscar" />
+                            <input type="button" value="Ver Todo" id="btn_limpiar" />
+                        </td>
+                    </tr>                    
+                </tbody>
+            </table>
+			<?php echo $this->Form->end(); ?>
+    	</fieldset>
 	<table cellpadding="0" cellspacing="0">
 		<tr>
 			<th><?php echo $this->Paginator->sort('Nombre', 'ceco_nombre');?></th>

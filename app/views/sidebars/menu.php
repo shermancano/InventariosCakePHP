@@ -281,7 +281,8 @@
 		<!--<li><?php echo $this->Html->link(__('Existencias', true), array('controller' => 'reportes', 'action' => 'existencias')); ?></li>-->
         <li><?php echo $this->Html->link(__('Activos Fijos', true), array('controller' => 'reportes', 'action' => 'activos_fijos')); ?></li>
         <li><?php echo $this->Html->link(__('Activos Fijos General', true), array('controller' => 'reportes', 'action' => 'activos_fijos_general'));?></li>
-        <li><?php echo $this->Html->link(__('Traslados por Fechas', true), array('controller' => 'reportes', 'action' => 'traslados_por_fecha')); ?></li>
+        <li><?php echo $this->Html->link(__('Activos Fijos Migracion', true), array('controller' => 'reportes', 'action' => 'activos_fijos_migracion'));?></li>
+	<li><?php echo $this->Html->link(__('Traslados por Fechas', true), array('controller' => 'reportes', 'action' => 'traslados_por_fecha')); ?></li>
         <li><?php echo $this->Html->link(__('Stock Activo Fijo CS/CC', true), array('controller' => 'reportes', 'action' => 'stock_centro_costo'));?></li>
         <li><?php echo $this->Html->link(__('Bajas Activos Fijos', true), array('controller' => 'reportes', 'action' => 'bajas_activos_fijos'));?></li>
         <li><?php echo $this->Html->link(__('Trazabilidad', true), array('controller' => 'reportes', 'action' => 'trazabilidad_index'));?></li>
@@ -474,6 +475,66 @@
 		<li>
 			<ul>
 				<li><?php echo $this->Html->link(__(utf8_encode('A�adir'), true), array('controller' => 'responsables', 'action' => 'add')); ?></li>
+			</ul>
+		</li>
+		<?php
+			}
+		?>
+	</ul>
+	<?php
+		endif;
+	?>
+	<?php
+		if (in_array('encargado_dependencias', $menu)) :
+	?>
+	<ul>
+		<li><?php echo $this->Html->link(__('Encargado Dependencia', true), array('controller' => 'encargado_dependencias', 'action' => 'index')); ?></li>
+		<?php
+			if ($this->params['controller'] == "encargado_dependencias") {
+		?>
+		<li>
+			<ul>
+				<li><?php echo $this->Html->link(__(utf8_encode('Añadir'), true), array('controller' => 'encargado_dependencias', 'action' => 'add')); ?></li>
+			</ul>
+		</li>
+		<?php
+			}
+		?>
+	</ul>
+	<?php
+		endif;
+	?>
+	<?php
+		if (in_array('encargado_inventarios', $menu)) :
+	?>
+	<ul>
+		<li><?php echo $this->Html->link(__('Encargado Inventario', true), array('controller' => 'encargado_inventarios', 'action' => 'index')); ?></li>
+		<?php
+			if ($this->params['controller'] == "encargado_inventarios") {
+		?>
+		<li>
+			<ul>
+				<li><?php echo $this->Html->link(__(utf8_encode('Añadir'), true), array('controller' => 'encargado_inventarios', 'action' => 'add')); ?></li>
+			</ul>
+		</li>
+		<?php
+			}
+		?>
+	</ul>
+	<?php
+		endif;
+	?>
+	<?php
+		if (in_array('encargado_establecimientos', $menu)) :
+	?>
+	<ul>
+		<li><?php echo $this->Html->link(__('Director Establecimiento', true), array('controller' => 'encargado_establecimientos', 'action' => 'index')); ?></li>
+		<?php
+			if ($this->params['controller'] == "encargado_establecimientos") {
+		?>
+		<li>
+			<ul>
+				<li><?php echo $this->Html->link(__(utf8_encode('Añadir'), true), array('controller' => 'encargado_establecimientos', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php

@@ -1,11 +1,12 @@
 
+<script language="Javascript" type="text/javascript" src="/js/centros_costos/add_centro_costo.js"></script>
 <div class="centros_costos form">
-<?php echo $this->Form->create('CentroCosto', array('url' => '/centros_costos/add'));?>
+<?php echo $this->Form->create('CentroCosto', array('id' => 'CentroCostoAdd', 'url' => '/centros_costos/add'));?>
 	<fieldset>
 		<legend><?php __(utf8_encode('Nuevo Centro de Costo')); ?></legend>
 	<?php
 		echo $this->Form->input('comu_id', array('label' => 'Comuna', 'options' => $comunas, 'value' => 270));
-		echo $this->Form->input('ceco_id_padre', array('label' => 'Centro de Costo Padre', 'options' => $centros_costos));
+		echo $this->Form->input('ceco_id_padre', array('label' => 'Centro de Costo Padre', 'options' => $centros_costos, 'after' => '&nbsp;&nbsp;<img id="tifa_loader" src="/img/info.png" alt="0" />&nbsp; Verifique que el valor seleccionado sea el <strong>padre</strong> del centro de costo a crear'));
 		echo $this->Form->input('ceco_nombre', array('label' => 'Nombre'));
 		echo $this->Form->input('ceco_direccion', array('type' => 'text', 'label' => utf8_encode('Dirección')));
 		echo $this->Form->input('ceco_campana', array('type' => 'checkbox', 'label' => utf8_encode('Es Campaña?')));

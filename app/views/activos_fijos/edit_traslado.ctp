@@ -12,8 +12,8 @@
 		echo $this->Form->input('acfi_orden_compra', array('label' => 'Orden de Compra'));
 		echo $this->Form->input('tido_id', array('label' => 'Tipo de Documento', 'options' => $tipos_documentos, 'empty' => utf8_encode('--- Seleccione Opción ---')));
 		echo $this->Form->input('acfi_nro_documento', array('label' => utf8_encode('Número de Documento')));
-		echo $this->Form->input('acfi_fecha_documento', array('type' => 'date', 'label' => 'Fecha de Documento', 'value' => '', 'empty' => '', 'dateFormat' => 'DMY', 'minYear' => date('Y') - 70, 'maxYear' => date('Y')+2));		
-		echo $this->Form->input('acfi_fecha_adquisicion', array('type' => 'date', 'label' => utf8_encode('Fecha de Adquisici&oacute;n'), 'value' => '', 'empty' => '', 'dateFormat' => 'DMY', 'minYear' => date('Y') - 70, 'maxYear' => date('Y')+2));
+		echo $this->Form->input('acfi_fecha_documento', array('type' => 'date', 'label' => 'Fecha de Documento', 'value' => '', 'empty' => '', 'dateFormat' => 'DMY', 'minYear' => date('Y') - 70, 'maxYear' => date('Y')+15));		
+		echo $this->Form->input('acfi_fecha_adquisicion', array('type' => 'date', 'label' => utf8_encode('Fecha de Adquisici&oacute;n'), 'value' => '', 'empty' => '', 'dateFormat' => 'DMY', 'minYear' => date('Y') - 70, 'maxYear' => date('Y')+15));
 		echo $this->Form->input('acfi_descripcion', array('type' => 'textarea', 'label' => utf8_encode('Descripci&oacute;n')));
 		echo $this->Form->input('acfi_observaciones', array('type' => 'textarea', 'label' => 'Observaciones'));
 	?>

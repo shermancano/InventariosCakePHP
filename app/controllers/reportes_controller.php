@@ -2,7 +2,7 @@
 set_time_limit(0);
 class ReportesController extends AppController {
 	var $name = 'Reportes';
-	var $uses = array('TipoBien', 'Reporte', 'Responsable', 'CentroCosto', 'Producto', 'UbicacionActivoFijo', 'ActivoFijo', 'Existencia', 'CuentaContable', 'Configuracion', 'TrazabilidadActivoFijo', 'Depreciacion', 'ActivoFijoMantencion', 'Financiamiento');
+	var $uses = array('TipoBien', 'Reporte', 'EncargadoDependencia', 'EncargadoInventario', 'EncargadoEstablecimiento', 'Responsable', 'CentroCosto', 'Producto', 'UbicacionActivoFijo', 'ActivoFijo', 'Existencia', 'CuentaContable', 'Configuracion', 'TrazabilidadActivoFijo', 'Depreciacion', 'ActivoFijoMantencion', 'Financiamiento');
 	
 	function stock() {			
 		$centros_costos = $this->Session->read('userdata.selectCC');
@@ -382,6 +382,11 @@ class ReportesController extends AppController {
 	}
 	
 	function activos_fijos_general() {
+		$centros_costos = $this->Session->read('userdata.selectCC');
+		$this->set('centros_costos', $centros_costos);
+	}
+
+	function activos_fijos_migracion() {
 		$centros_costos = $this->Session->read('userdata.selectCC');
 		$this->set('centros_costos', $centros_costos);
 	}
@@ -889,16 +894,17 @@ class ReportesController extends AppController {
 			$worksheet->write(10, 3, 'Grupo', $format_head);
 			$worksheet->write(10, 4, 'Precio', $format_head);
 			$worksheet->write(10, 5, 'Propiedad', $format_head);
-			$worksheet->write(10, 6, 'Situación', $format_head);
+			$worksheet->write(10, 6, 'Situacion', $format_head);
 			$worksheet->write(10, 7, 'Marca', $format_head);
 			$worksheet->write(10, 8, 'Color', $format_head);
 			$worksheet->write(10, 9, 'Modelo', $format_head);
 			$worksheet->write(10, 10, 'Serie', $format_head);
 			$worksheet->write(10, 11, 'Stock Total', $format_head);
 			$worksheet->write(10, 12, 'Valor Total', $format_head);
-			$worksheet->write(10, 13, 'Centro de Costo (Unidad)', $format_head);
-			$worksheet->write(10, 14, 'Dependencia', $format_head);
-			$worksheet->write(10, 15, 'Establecimiento', $format_head);
+			$worksheet->write(10, 13, 'Fecha Documento', $format_head);
+			$worksheet->write(10, 14, 'Centro de Costo (Unidad)', $format_head);
+			$worksheet->write(10, 15, 'Dependencia', $format_head);
+			$worksheet->write(10, 16, 'Establecimiento', $format_head);
 			$row_count = 11;
 			$sum_precio_total = 0;
 			$sum_bienes = 0;
@@ -918,9 +924,11 @@ class ReportesController extends AppController {
 				$worksheet->write($row_count, 10, utf8_decode($row['ubaf_serie']), $format_cell);
 				$worksheet->write($row_count, 11, $row['total'], $format_cell);
 				$worksheet->write($row_count, 12, $row['ubaf_precio'] * $row['total'], $format_cell);
-				$worksheet->write($row_count, 13, utf8_decode($row['ceco_nombre']), $format_cell);
-				$worksheet->write($row_count, 14, utf8_decode($row['dependencia']), $format_cell);
-				$worksheet->write($row_count, 15, utf8_decode($row['establecimiento']), $format_cell);
+				$row['ubaf_fecha_adquisicion'] = (!empty($row['ubaf_fecha_adquisicion'])) ? date("d-m-Y", strtotime($row['ubaf_fecha_adquisicion'])) : "";
+				$worksheet->write($row_count, 13, utf8_decode($row['ubaf_fecha_adquisicion']), $format_cell);
+				$worksheet->write($row_count, 14, utf8_decode($row['ceco_nombre']), $format_cell);
+				$worksheet->write($row_count, 15, utf8_decode($row['dependencia']), $format_cell);
+				$worksheet->write($row_count, 16, utf8_decode($row['establecimiento']), $format_cell);
 				$sum_precio_total += $row['ubaf_precio']*$row['total'];
 				$sum_bienes += $row['total'];
 				$row_count++;
@@ -938,6 +946,133 @@ class ReportesController extends AppController {
 		
 		ob_clean();
 		$workbook->send('Activos_Fijos_General_'.date('d_m_Y_H_i_s').'.xls');
+		$workbook->close();
+	}
+
+	function activos_fijos_general_excel_migracion($ceco_id) {
+		$this->layout = 'ajax';
+		ini_set('memory_limit', '3072M');
+		$cc_hijos = $this->ccArrayToCcVector($this->CentroCosto->findAllChildren($ceco_id));
+		$ceco_id = $cc_hijos;
+		// info general
+		$info = $this->Reporte->activosFijosGeneralMigracion($ceco_id);
+
+		$param_iva = $this->Configuracion->find('first', array('conditions' => array('Configuracion.conf_id' => 'param_iva')));	
+
+		if (sizeof($param_iva) > 0 && is_array($param_iva)) {
+			$valor_iva = $param_iva['Configuracion']['conf_valor'];
+		} else {
+			$valor_iva = 0;
+		}	
+
+		// agrupar por centro de costo
+		$info_ = array();
+		foreach ($info as $row) {
+			$row = array_pop($row);
+			$info_[$row['ceco_id']][] = $row;
+		}
+
+		$workbook = new Spreadsheet_Excel_Writer();
+
+		// Formato de cabeceras
+		$format_head = $workbook->addFormat();
+		$format_head->setFgColor('blue');
+		$format_head->setBorder(1);		
+		// Formato de celdas
+		$format_cell = $workbook->addFormat();
+		$format_cell->setBorder(1);
+
+		// tomamos en cuenta el $info = $this->Reporte->activosFijosGeneral();
+		// no el agrupado por centro de costo
+		$worksheet = $workbook->addWorksheet();
+		$worksheet->write(0, 0, 'TIPO DE ALTA', $format_head);
+		$worksheet->write(0, 1, 'UNIDAD', $format_head);
+		$worksheet->write(0, 2, 'DEPENDENCIA FISICA', $format_head);
+		$worksheet->write(0, 3, 'NUMERO ORDEN DE COMPRA', $format_head);
+		$worksheet->write(0, 4, 'FECHA ORDEN DE COMPRA', $format_head);
+		$worksheet->write(0, 5, 'RUT', $format_head);
+		$worksheet->write(0, 6, 'NOMBRE', $format_head);
+		$worksheet->write(0, 7, 'NUMERO DE FACTURA', $format_head);
+		$worksheet->write(0, 8, 'FECHA FACTURA', $format_head);
+		$worksheet->write(0, 9, 'NUMERO DE DECRETO', $format_head);
+		$worksheet->write(0, 10, 'FECHA DECRETO', $format_head);
+		$worksheet->write(0, 11, 'NUMERO DE INVENTARIO BIEN', $format_head);
+		$worksheet->write(0, 12, 'NOMBRE DEL ARTICULO', $format_head);
+		$worksheet->write(0, 13, 'PRECIO', $format_head);
+		$worksheet->write(0, 14, 'VIDA UTIL', $format_head);
+		$worksheet->write(0, 15, 'ESTADO', $format_head);
+		$worksheet->write(0, 16, 'DESCRIPCION DEL BIEN', $format_head);
+		$worksheet->write(0, 17, 'CARACTERISTICAS DEL BIEN', $format_head);
+		$row_count = 1;
+		$sum_precio_total = 0;
+		$sum_bienes = 0;	
+
+		foreach ($info as $row) {
+			$row = array_pop($row);
+   			$dataDetalle = array();
+			$dataDetalle = $this->Reporte->findDetalleActivo(trim($row["ubaf_codigo"]));
+			$dataDetalle = array_pop($dataDetalle);
+			$row['acfi_orden_compra'] = $dataDetalle[0]['acfi_orden_compra'];
+			$row['acfi_nro_documento'] = $dataDetalle[0]['acfi_nro_documento'];
+			$row['deaf_fecha_adquisicion'] = (!empty($dataDetalle[0]['deaf_fecha_adquisicion'])) ? date("d-m-Y", strtotime($dataDetalle[0]['deaf_fecha_adquisicion'])) : "";
+			$row['nombre_proveedor'] = $dataDetalle[0]['nombre_proveedor'];
+			$row['rut_proveedor'] = $dataDetalle[0]['rut_proveedor'];
+			$row['rut_proveedor'] = $dataDetalle[0]['rut_proveedor'];
+
+			$worksheet->write($row_count, 0, utf8_decode("ALTA POR COMPRA"), $format_cell);
+			$worksheet->write($row_count, 1, utf8_decode($row['dependencia']), $format_cell);
+			$worksheet->write($row_count, 2, utf8_decode($row['ceco_nombre']), $format_cell);
+			$worksheet->write($row_count, 3, utf8_decode($row['acfi_orden_compra']), $format_cell);
+			$worksheet->write($row_count, 4, utf8_decode($row['deaf_fecha_adquisicion']), $format_cell);
+			$worksheet->write($row_count, 5, utf8_decode($row['rut_proveedor']), $format_cell);
+			$worksheet->write($row_count, 6, utf8_decode($row['nombre_proveedor']), $format_cell);
+			$worksheet->write($row_count, 7, utf8_decode($row['acfi_nro_documento']), $format_cell);
+			$worksheet->write($row_count, 8, utf8_decode($row['deaf_fecha_adquisicion']), $format_cell);
+			$worksheet->write($row_count, 9, "", $format_cell);
+			$worksheet->write($row_count, 10, "", $format_cell);
+			$worksheet->writeString($row_count, 11, $row["ubaf_codigo"], $format_cell);
+			$worksheet->write($row_count, 12, utf8_decode($row['prod_nombre']), $format_cell);
+			$worksheet->write($row_count, 13, $row['ubaf_precio'], $format_cell);
+			$worksheet->writeString($row_count, 14, $row['ubaf_vida_util'], $format_cell);
+			$estado = trim(strtoupper($row['situ_nombre']));
+			$nombreEstado = "";
+			if ($estado == "B") {
+    				$nombreEstado = "BUENO";
+			} else if ($estado == "M") {
+				$nombreEstado = "MALO";
+			} else if ($estado == "R") {
+				$nombreEstado = "REGULAR";
+			}
+			$color = "";
+			if (trim($row['colo_nombre']) != "") {
+				$color = "Color: ".$row['colo_nombre'];
+			}
+			$marca = "";
+			if (trim($row['marc_nombre']) != "") {
+				$color = "Marca: ".$row['marc_nombre'];
+			}
+			$modelo = "";
+			if (trim($row['mode_nombre']) != "") {
+				$modelo = "Modelo: ".$row['mode_nombre'];
+			}
+			$serie = "";
+			if (trim($row['ubaf_serie']) != "") {
+				$color = "Serie: ".$row['ubaf_serie'];
+			}
+			$propiedad = "";
+			if (trim($row['prop_nombre']) != "") {
+				$color = "Propiedad: ".$row['prop_nombre'];
+			}
+			$caracteristicas = $color." ".$marca." ".$modelo." ".$serie." ".$propiedad;  
+			$worksheet->write($row_count, 15, utf8_decode($nombreEstado), $format_cell);
+			$worksheet->write($row_count, 16, utf8_decode($row['prod_nombre']), $format_cell);
+			$worksheet->write($row_count, 17, utf8_decode($caracteristicas), $format_cell);
+			$row_count++;
+		}
+
+
+		ob_clean();
+		$workbook->send('Activos_Fijos_Migracion_'.date('d_m_Y_H_i_s').'.xls');
 		$workbook->close();
 	}
 	
@@ -1086,12 +1221,18 @@ class ReportesController extends AppController {
 		$responsables = $this->Responsable->find('all', array('order' => 'Responsable.resp_id', 'conditions' => $conditions));
 		$ubicacion = $this->Responsable->CentroCosto->findUbicacion($ceco_id);
 		$busca_responsables = $this->Responsable->CentroCosto->buscaResponsable($ceco_id);
-		
+		$buscaEncargadoDependencia = $this->Responsable->CentroCosto->buscaEncargadoDependencia($ceco_id);
+		$buscaEncargadoInventario = $this->Responsable->CentroCosto->buscaEncargadoInventario($ceco_id);
+		$buscaEncargadoEstablecimiento = $this->Responsable->CentroCosto->buscaEncargadoEstablecimiento($ceco_id);
+
 		$this->set('info_cc', $info_cc);
 		$this->set('responsables', $responsables);
 		$this->set('activos_fijos', $activos_fijos);
 		$this->set('ubicacion', $ubicacion);
 		$this->set('busca_responsables', $busca_responsables);
+		$this->set('buscaEncargadoDependencia', $buscaEncargadoDependencia);
+		$this->set('buscaEncargadoInventario', $buscaEncargadoInventario);
+		$this->set('buscaEncargadoEstablecimiento', $buscaEncargadoEstablecimiento);
 		ob_clean();
 	}
 	
@@ -2428,11 +2569,17 @@ class ReportesController extends AppController {
 		$responsables = $this->Responsable->find('all', array('order' => 'Responsable.resp_id', 'conditions' => $conditions));
 		$ubicacion = $this->Responsable->CentroCosto->findUbicacion($ceco_id);
 		$busca_responsables = $this->Responsable->CentroCosto->buscaResponsable($ceco_id);
-		
+		$buscaEncargadoDependencia = $this->Responsable->CentroCosto->buscaEncargadoDependencia($ceco_id);
+		$buscaEncargadoInventario = $this->Responsable->CentroCosto->buscaEncargadoInventario($ceco_id);
+		$buscaEncargadoEstablecimiento = $this->Responsable->CentroCosto->buscaEncargadoEstablecimiento($ceco_id);		
+
 		$this->set('responsables', $responsables);
 		$this->set('activos_fijos', $activos_fijos);
 		$this->set('ubicacion', $ubicacion);
 		$this->set('busca_responsables', $busca_responsables);
+		$this->set('buscaEncargadoDependencia', $buscaEncargadoDependencia);
+		$this->set('buscaEncargadoInventario', $buscaEncargadoInventario);
+		$this->set('buscaEncargadoEstablecimiento', $buscaEncargadoEstablecimiento);
 		ob_clean();
 	}
 	
