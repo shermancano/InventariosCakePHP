@@ -205,7 +205,7 @@
             ?>
             <li>
                 <ul>
-                    <li><?php echo $this->Html->link(__(utf8_encode('Nueva Exclusión'), true), array('controller' => 'exclusiones_activos_fijos', 'action' => 'add')); ?></li>
+                    <li><?php echo $this->Html->link(__(utf8_encode('Nueva Exclusiï¿½n'), true), array('controller' => 'exclusiones_activos_fijos', 'action' => 'add')); ?></li>
                 </ul>
             </li>
             <?php
@@ -225,19 +225,19 @@
 		endif;
 	?>	
 	<ul>
-		<li><?php echo $this->Html->link(__(utf8_encode('Consulta/Códigos de Barra'), true), array('controller' => 'activos_fijos', 'action' => 'codigos_barra')); ?></li>
+		<li><?php echo $this->Html->link(__(utf8_encode('Consulta/Cï¿½digos de Barra'), true), array('controller' => 'activos_fijos', 'action' => 'codigos_barra')); ?></li>
 	</ul>
 	<ul>
 		<li><?php echo $this->Html->link(__(utf8_encode('Plancheta'), true), array('controller' => 'activos_fijos', 'action' => 'plancheta')); ?></li>
 	</ul>
     <ul>
-    	<li><?php echo $this->Html->link(__(utf8_encode('Depreciación'), true), array('controller' => 'depreciaciones', 'action' => 'index')); ?></li>
+    	<li><?php echo $this->Html->link(__(utf8_encode('Depreciaciï¿½n'), true), array('controller' => 'depreciaciones', 'action' => 'index')); ?></li>
 		<?php
 			if ($this->params['controller'] == "depreciaciones") {
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Nuevo cálculo'), true), array('controller' => 'depreciaciones', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Nuevo cï¿½lculo'), true), array('controller' => 'depreciaciones', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -257,7 +257,7 @@
             ?>
             <li>
                 <ul>
-                    <li><?php echo $this->Html->link(__(utf8_encode('Nueva Mantención'), true), array('controller' => 'detalles_activos_fijos_mantenciones', 'action' => 'add')); ?></li>
+                    <li><?php echo $this->Html->link(__(utf8_encode('Nueva Mantenciï¿½n'), true), array('controller' => 'detalles_activos_fijos_mantenciones', 'action' => 'add')); ?></li>
                 </ul>
             </li>
             <?php
@@ -275,7 +275,7 @@
     <h3><?php __('Reportes'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('Stock', true), array('controller' => 'reportes', 'action' => 'stock')); ?></li>
-		<li><?php echo $this->Html->link(__(utf8_encode('Stock en Tránsito'), true), array('controller' => 'reportes', 'action' => 'transito')); ?></li>
+		<li><?php echo $this->Html->link(__(utf8_encode('Stock en TrÃ¡nsito'), true), array('controller' => 'reportes', 'action' => 'transito')); ?></li>
 		<li><?php echo $this->Html->link(__('Gastos por Cuenta Cont.', true), array('controller' => 'reportes', 'action' => 'gastos_cta_contable')); ?></li>
 		<li><?php echo $this->Html->link(__('Catalogo de Productos', true), array('controller' => 'reportes', 'action' => 'productos')); ?></li>
 		<!--<li><?php echo $this->Html->link(__('Existencias', true), array('controller' => 'reportes', 'action' => 'existencias')); ?></li>-->
@@ -286,10 +286,11 @@
         <li><?php echo $this->Html->link(__('Stock Activo Fijo CS/CC', true), array('controller' => 'reportes', 'action' => 'stock_centro_costo'));?></li>
         <li><?php echo $this->Html->link(__('Bajas Activos Fijos', true), array('controller' => 'reportes', 'action' => 'bajas_activos_fijos'));?></li>
         <li><?php echo $this->Html->link(__('Trazabilidad', true), array('controller' => 'reportes', 'action' => 'trazabilidad_index'));?></li>
-        <li><?php echo $this->Html->link(__(utf8_encode('Depreciación por Producto'), true), array('controller' => 'reportes', 'action' => 'depreciacion_producto'));?></li>
+        <li><?php echo $this->Html->link(__(utf8_encode('DepreciaciÃ³n por Producto'), true), array('controller' => 'reportes', 'action' => 'depreciacion_producto'));?></li>
         <li><?php echo $this->Html->link(__('Mantenciones', true), array('controller' => 'reportes', 'action' => 'mantenciones'));?></li>
         <li><?php echo $this->Html->link(__('Financiamiento', true), array('controller' => 'reportes', 'action' => 'financiamiento'));?></li>
-		
+		<li><?php echo $this->Html->link(__('Bienes Muebles', true), array('controller' => 'reportes', 'action' => 'bienes_muebles_slep'));?></li>
+
 		<?php
 			if (in_array('logs', $menu)) :
 		?>
@@ -314,7 +315,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Proveedor'), true), array('controller' => 'proveedores', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Proveedor'), true), array('controller' => 'proveedores', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -334,7 +335,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Color'), true), array('controller' => 'colores', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Color'), true), array('controller' => 'colores', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -354,7 +355,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Marca'), true), array('controller' => 'marcas', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Marca'), true), array('controller' => 'marcas', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -374,7 +375,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Modelo'), true), array('controller' => 'modelos', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Modelo'), true), array('controller' => 'modelos', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -414,7 +415,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Cuenta'), true), array('controller' => 'cuentas_contables', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Cuenta'), true), array('controller' => 'cuentas_contables', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -434,7 +435,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Nueva Situación'), true), array('controller' => 'situaciones', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Nueva Situaciï¿½n'), true), array('controller' => 'situaciones', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -474,7 +475,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir'), true), array('controller' => 'responsables', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir'), true), array('controller' => 'responsables', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -554,7 +555,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Familia'), true), array('controller' => 'familias', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Familia'), true), array('controller' => 'familias', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -574,7 +575,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Grupo'), true), array('controller' => 'grupos', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Grupo'), true), array('controller' => 'grupos', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -594,7 +595,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Producto'), true), array('controller' => 'productos', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Producto'), true), array('controller' => 'productos', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -656,7 +657,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Contrato'), true), array('controller' => 'contratos', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Contrato'), true), array('controller' => 'contratos', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -676,7 +677,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Tipo'), true), array('controller' => 'tipo_contratos', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Tipo'), true), array('controller' => 'tipo_contratos', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -696,7 +697,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Tipo'), true), array('controller' => 'tipo_renovaciones', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Tipo'), true), array('controller' => 'tipo_renovaciones', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -716,7 +717,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Modalidad'), true), array('controller' => 'modalidad_compras', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Modalidad'), true), array('controller' => 'modalidad_compras', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -736,7 +737,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Tipo'), true), array('controller' => 'tipo_montos', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Tipo'), true), array('controller' => 'tipo_montos', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -756,7 +757,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Unidad'), true), array('controller' => 'unidad_compras', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Unidad'), true), array('controller' => 'unidad_compras', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -776,7 +777,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Documento'), true), array('controller' => 'documentos', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Documento'), true), array('controller' => 'documentos', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -796,7 +797,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Rubro'), true), array('controller' => 'rubros', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Rubro'), true), array('controller' => 'rubros', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -816,7 +817,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Banco'), true), array('controller' => 'bancos', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Banco'), true), array('controller' => 'bancos', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -836,14 +837,14 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Gasto'), true), array('controller' => 'gastos', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Gasto'), true), array('controller' => 'gastos', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
 			}
 		?>
 		<li><?php echo $this->Html->link(__('Resumen de Gastos', true), array('controller' => 'gastos', 'action' => 'resumen')); ?></li>
-		<li><?php echo $this->Html->link(__(utf8_encode('Gráficos'), true), array('controller' => 'gastos', 'action' => 'graficos')); ?></li>
+		<li><?php echo $this->Html->link(__(utf8_encode('Grï¿½ficos'), true), array('controller' => 'gastos', 'action' => 'graficos')); ?></li>
 	</ul>
 	<?php
 		endif;
@@ -858,7 +859,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Evaluación'), true), array('controller' => 'evaluaciones', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Evaluaciï¿½n'), true), array('controller' => 'evaluaciones', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -867,13 +868,13 @@
 		<?php
 			if (in_array('items', $menu)) :
 		?>
-		<li><?php echo $this->Html->link(__(utf8_encode('Items de Evaluación'), true), array('controller' => 'items', 'action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__(utf8_encode('Items de Evaluaciï¿½n'), true), array('controller' => 'items', 'action' => 'index')); ?></li>
 		<?php
 			if ($this->params['controller'] == "items") {
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Item'), true), array('controller' => 'items', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Item'), true), array('controller' => 'items', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -891,7 +892,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Tipo'), true), array('tipo_items' => 'items', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Tipo'), true), array('tipo_items' => 'items', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -900,7 +901,7 @@
 		<?php
 			endif;
 		?>
-		<li><?php echo $this->Html->link(__(utf8_encode('Resumen de Evaluación'), true), array('controller' => 'evaluaciones', 'action' => 'resumen')); ?></li>
+		<li><?php echo $this->Html->link(__(utf8_encode('Resumen de Evaluaciï¿½n'), true), array('controller' => 'evaluaciones', 'action' => 'resumen')); ?></li>
 	</ul>
 	<?php
 		endif;
@@ -936,7 +937,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Tipo'), true), array('controller' => 'tipo_cambios', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Tipo'), true), array('controller' => 'tipo_cambios', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -956,7 +957,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Motivo'), true), array('controller' => 'motivos_bajas', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Motivo'), true), array('controller' => 'motivos_bajas', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -976,7 +977,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Dependencia'), true), array('controller' => 'dependencias_virtuales', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Dependencia'), true), array('controller' => 'dependencias_virtuales', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -999,7 +1000,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Usuario'), true), array('controller' => 'usuarios', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Usuario'), true), array('controller' => 'usuarios', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php
@@ -1019,7 +1020,7 @@
 		?>
 		<li>
 			<ul>
-				<li><?php echo $this->Html->link(__(utf8_encode('Añadir Perfil'), true), array('controller' => 'perfiles', 'action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__(utf8_encode('Aï¿½adir Perfil'), true), array('controller' => 'perfiles', 'action' => 'add')); ?></li>
 			</ul>
 		</li>
 		<?php

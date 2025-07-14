@@ -257,7 +257,7 @@ class Reporte extends AppModel {
 				left join centros_costos as depe on (ceco.ceco_id_padre = depe.ceco_id)
 				left join centros_costos as esta on (depe.ceco_id_padre = esta.ceco_id)
 				where tibi.tibi_id = 1
-				and ceco.ceco_id in (".implode(",", $ceco_id).")			
+				and ceco.ceco_id in (".implode(",", $ceco_id).")		
 				group by ceco.ceco_id
 						,ceco.ceco_nombre
 						,prod.prod_nombre
@@ -540,6 +540,70 @@ class Reporte extends AppModel {
 				order by prod.prod_nombre";
 		$res = $this->query($sql);
 		return $res;	
+	}
+
+	function bienesMueblesSlep($ceco_id) {	
+		$sql = "select ceco.ceco_id
+		              ,ceco.ceco_nombre
+				      ,prod.prod_nombre
+				      ,prod.prod_id
+					  ,tibi.tibi_nombre
+					  ,situ.situ_nombre
+					  ,fami.fami_nombre
+					  ,ubaf.ubaf_fecha_adquisicion		              				      
+					  ,tibi.tibi_nombre
+					  ,fami.fami_nombre
+					  ,grup.grup_nombre
+					  ,ubaf.ubaf_precio
+					  ,prop.prop_nombre					  
+					  ,marc.marc_nombre
+					  ,colo.colo_nombre
+					  ,mode.mode_nombre
+					  ,ubaf.ubaf_serie
+					  ,count(*) as total
+					  ,acfi.acfi_observaciones
+					  ,fina.fina_nombre
+					  ,nied.nied_nombre
+				from ubicaciones_activos_fijos as ubaf
+				left join centros_costos as ceco using (ceco_id)
+				left join niveles_educativos as nied using (nied_id)
+				left join productos as prod using (prod_id)
+				left join propiedades as prop using (prop_id)
+				left join situaciones as situ using (situ_id)
+				left join marcas as marc using (marc_id)
+				left join colores as colo using (colo_id)
+				left join modelos as mode using (mode_id)
+				left join grupos as grup using (grup_id)
+				left join familias as fami using (fami_id)
+				left join tipos_bienes as tibi using (tibi_id)
+				inner join detalle_activos_fijos as deaf on (deaf.deaf_codigo = ubaf.ubaf_codigo)
+				inner join activos_fijos as acfi on (acfi.acfi_id = deaf.acfi_id)
+				inner join financiamientos as fina using (fina_id)
+				where tibi.tibi_id = 1
+				and ceco.ceco_id in (".implode(",", $ceco_id).")
+				group by ceco.ceco_id
+						,ceco.ceco_nombre
+						,prod.prod_nombre
+						,prod.prod_id
+						,tibi.tibi_nombre
+						,situ.situ_nombre
+						,fami.fami_nombre
+						,grup.grup_nombre
+						,ubaf.ubaf_precio
+						,prop.prop_nombre
+						,situ.situ_nombre
+						,marc.marc_nombre
+						,colo.colo_nombre
+						,mode.mode_nombre
+						,ubaf.ubaf_serie
+						,ubaf.ubaf_fecha_adquisicion
+						,acfi.acfi_observaciones
+						,fina.fina_nombre
+						,nied.nied_nombre
+				order by ceco.ceco_nombre
+						,prod.prod_nombre asc;";
+		$res = $this->query($sql);
+		return $res;		
 	}
 }	
 ?>

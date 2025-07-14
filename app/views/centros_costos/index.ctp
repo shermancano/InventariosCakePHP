@@ -16,7 +16,7 @@
 <div class="gastos index">
 	<h2><?php __('Centros de Costos');?></h2>
 	<fieldset>
-        <legend><?php __(utf8_encode('Búsqueda'));?></legend>
+        <legend><?php __(utf8_encode('BÃºsqueda'));?></legend>
         <?php echo $this->Form->create('CentroCosto', array('id' => 'CentrosCostos', 'url' => '/centros_costos/index'));?>
             <table width="100%" id="tabla_busqueda">
                 <tbody>
@@ -39,10 +39,10 @@
 	<table cellpadding="0" cellspacing="0">
 		<tr>
 			<th><?php echo $this->Paginator->sort('Nombre', 'ceco_nombre');?></th>
-			<th><?php echo $this->Paginator->sort(utf8_encode('Dirección'), 'ceco_direccion');?></th>
+			<th><?php echo $this->Paginator->sort(utf8_encode('DirecciÃ³n'), 'ceco_direccion');?></th>
 			<th><?php echo $this->Paginator->sort('Comuna', 'comu_id');?></th>
 			<th><?php echo $this->Paginator->sort('Centro Padre', 'ceco_id_padre');?></th>
-			<th><?php echo $this->Paginator->sort(utf8_encode('Es campaña?'), 'ceco_campana');?></th>			
+			<th><?php echo $this->Paginator->sort(utf8_encode('Es campaÃ±a?'), 'ceco_campana');?></th>			
 			<th class="actions"><?php __('Acciones');?></th>
 		</tr>
 	<?php
@@ -78,7 +78,7 @@
 	<p>
 	<?php
 	echo $this->Paginator->counter(array(
-	'format' => __(utf8_encode('Página %page% de %pages%, mostrando %current% registros de un total de %count% total, empezando en %start%, terminando en %end%'), true)
+	'format' => __(utf8_encode('PÃ¡gina %page% de %pages%, mostrando %current% registros de un total de %count% total, empezando en %start%, terminando en %end%'), true)
 	));
 	?>	</p>
 

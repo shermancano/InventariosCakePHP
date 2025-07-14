@@ -70,9 +70,9 @@ class CentrosCostosController extends AppController {
 					$ceco_id = $this->CentroCosto->id;
 					$ubicacion = $this->CentroCosto->findUbicacion($ceco_id);
 					$this->Log->write($this->Session->read('userdata.Usuario.usua_id'), "Nuevo Centro de Costo", $_REQUEST);
-					$this->Session->setFlash(__('El Centro de Costo ha sido guardado. Ubicación: '.$ubicacion, true));
+					$this->Session->setFlash(__('El Centro de Costo ha sido guardado. Ubicaciï¿½n: '.$ubicacion, true));
 				} else {
-					$this->Session->setFlash(__(utf8_encode('No se pudo guardar el Centro de Costo, por favor inténtelo nuevamente'), true));
+					$this->Session->setFlash(__(utf8_encode('No se pudo guardar el Centro de Costo, por favor intï¿½ntelo nuevamente'), true));
 				}
 			}
 		}
@@ -82,7 +82,9 @@ class CentrosCostosController extends AppController {
 		$centros_costos = $this->Session->read('userdata.selectCC');
 		$this->set('centros_costos', $centros_costos);
 		$tipos_localizaciones = $this->CentroCosto->TipoLocalizacion->find('list', array('fields' => 'tilo_nombre'));
-		$this->set('tipos_localizaciones', $tipos_localizaciones); 
+		$this->set('tipos_localizaciones', $tipos_localizaciones);
+		$nivelesEducativos = $this->CentroCosto->NivelEducativo->find('list', array('fields' => 'nied_nombre'));
+		$this->set('nivelesEducativos', $nivelesEducativos);
 	}
 	
 	function edit($ceco_id) {
@@ -97,11 +99,11 @@ class CentrosCostosController extends AppController {
 			if ($this->CentroCosto->validates()) {
 				if ($this->CentroCosto->save($this->data)) {
 					$ubicacion = $this->CentroCosto->findUbicacion($ceco_id);
-					$this->Log->write($this->Session->read('userdata.Usuario.usua_id'), utf8_encode("Modificación Centro de Costo"), $_REQUEST);
-					$this->Session->setFlash(__('El Centro de Costo ha sido editado.  Ubicación: '.$ubicacion, true));
+					$this->Log->write($this->Session->read('userdata.Usuario.usua_id'), utf8_encode("Modificaciï¿½n Centro de Costo"), $_REQUEST);
+					$this->Session->setFlash(__('El Centro de Costo ha sido editado.  Ubicaciï¿½n: '.$ubicacion, true));
 					$this->redirect(array('action' => 'index'));
 				} else {
-					$this->Session->setFlash(__(utf8_encode('No se pudo guardar el Centro de Costo, por favor inténtelo nuevamente'), true));
+					$this->Session->setFlash(__(utf8_encode('No se pudo guardar el Centro de Costo, por favor intï¿½ntelo nuevamente'), true));
 				}
 			}
 		}
@@ -115,7 +117,9 @@ class CentrosCostosController extends AppController {
 		$centros_costos = $this->Session->read('userdata.selectCC');
 		$this->set('centros_costos', $centros_costos);
 		$tipos_localizaciones = $this->CentroCosto->TipoLocalizacion->find('list', array('fields' => 'tilo_nombre'));
-		$this->set('tipos_localizaciones', $tipos_localizaciones); 
+		$this->set('tipos_localizaciones', $tipos_localizaciones);
+		$nivelesEducativos = $this->CentroCosto->NivelEducativo->find('list', array('fields' => 'nied_nombre'));
+		$this->set('nivelesEducativos', $nivelesEducativos);
 	}
 	
 	function delete($id = null) {
@@ -124,7 +128,7 @@ class CentrosCostosController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->CentroCosto->delete($id)) {
-			$this->Log->write($this->Session->read('userdata.Usuario.usua_id'), utf8_encode("Eliminación Centro de Costo"), $_REQUEST);
+			$this->Log->write($this->Session->read('userdata.Usuario.usua_id'), utf8_encode("Eliminaciï¿½n Centro de Costo"), $_REQUEST);
 			$this->Session->setFlash(__('El Centro de Costo ha sido eliminado', true));
 			$this->redirect(array('action'=>'index'));
 		}

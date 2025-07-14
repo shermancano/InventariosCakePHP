@@ -35,7 +35,7 @@ class ReportesController extends AppController {
 				$pdf->setUnderlineLinks(true);
 				$pdf->setScaleFactor('0.8');
 				$pdf->setUseColor(true);
-				$pdf->setFooter('center', 'Página $N');
+				$pdf->setFooter('center', 'Pï¿½gina $N');
 				$pdf->setHeader('center', '&nbsp;');
 				//$pdf->setUseCss(true);
 				//$pdf->setAdditionalCSS('* {margin:0; padding:0;}');
@@ -121,7 +121,7 @@ class ReportesController extends AppController {
 		$worksheet->write(10, 3, 'Tipo de Bien', $format_head);
 		$worksheet->write(10, 4, 'Familia', $format_head);
 		$worksheet->write(10, 5, 'Grupo', $format_head);
-		$worksheet->write(10, 6, 'Stock Crítico (por CS/CC)', $format_head);
+		$worksheet->write(10, 6, 'Stock Crï¿½tico (por CS/CC)', $format_head);
 		$worksheet->write(10, 7, 'Stock Total', $format_head);
 		
 		// Formato de celdas
@@ -189,20 +189,20 @@ class ReportesController extends AppController {
 		$format_head->setFgColor('yellow');
 		$format_head->setBorder(1);
 		
-		$worksheet->write(10, 0, 'Código', $format_head);
+		$worksheet->write(10, 0, 'Cï¿½digo', $format_head);
 		$worksheet->write(10, 1, 'Nombre', $format_head);
 		$worksheet->write(10, 2, 'Grupo', $format_head);
 		$worksheet->write(10, 3, 'Familia', $format_head);
 		$worksheet->write(10, 4, 'Tipo de Bien', $format_head);
 		$worksheet->write(10, 5, 'Propiedad', $format_head);
-		$worksheet->write(10, 6, 'Situación', $format_head);
+		$worksheet->write(10, 6, 'Situaciï¿½n', $format_head);
 		$worksheet->write(10, 7, 'Marca', $format_head);
 		$worksheet->write(10, 8, 'Color', $format_head);
-		$worksheet->write(10, 9, 'Fecha Garantía', $format_head);
+		$worksheet->write(10, 9, 'Fecha Garantï¿½a', $format_head);
 		$worksheet->write(10, 10, 'Precio', $format_head);
 		$worksheet->write(10, 11, 'Serie', $format_head);
-		$worksheet->write(10, 12, '¿Es Depreciable?', $format_head);
-		$worksheet->write(10, 13, 'Vida Útil', $format_head);
+		$worksheet->write(10, 12, 'ï¿½Es Depreciable?', $format_head);
+		$worksheet->write(10, 13, 'Vida ï¿½til', $format_head);
 		$worksheet->write(10, 14, 'Centro de Costo (Unidad)', $format_head);
 		$worksheet->write(10, 15, 'Dependencia', $format_head);
 		$worksheet->write(10, 16, 'Establecimiento', $format_head);
@@ -289,7 +289,7 @@ class ReportesController extends AppController {
 		$format_head->setBorder(1);
 		
 		$worksheet->write(10, 0, 'ID Producto', $format_head);
-		$worksheet->write(10, 1, 'Código', $format_head);
+		$worksheet->write(10, 1, 'Cï¿½digo', $format_head);
 		$worksheet->write(10, 2, 'Nombre', $format_head);
 		$worksheet->write(10, 3, 'Familia', $format_head);
 		$worksheet->write(10, 4, 'Grupo', $format_head);
@@ -334,7 +334,7 @@ class ReportesController extends AppController {
 				$pdf->setUnderlineLinks(true);
 				$pdf->setScaleFactor('0.8');
 				$pdf->setUseColor(true);
-				$pdf->setFooter('center', 'Página $N');
+				$pdf->setFooter('center', 'Pï¿½gina $N');
 				$pdf->setHeader('center', '&nbsp;');
 				$pdf->setUseCss(false);
 				$pdf->setAdditionalCSS('.body_pdf {margin:0; padding:0;}');
@@ -497,7 +497,7 @@ class ReportesController extends AppController {
 				$pdf->setUnderlineLinks(true);
 				$pdf->setScaleFactor('0.8');
 				$pdf->setUseColor(true);
-				$pdf->setFooter('center', 'Página $N');
+				$pdf->setFooter('center', 'Pï¿½gina $N');
 				$pdf->setHeader('center', '&nbsp;');
 				$pdf->setUseCss(true);
 				$fp = fopen($pdf->convert(), "r");
@@ -570,7 +570,7 @@ class ReportesController extends AppController {
 				$pdf->setUnderlineLinks(true);
 				$pdf->setScaleFactor('0.8');
 				$pdf->setUseColor(true);
-				$pdf->setFooter('center', 'Página $N');
+				$pdf->setFooter('center', 'Pï¿½gina $N');
 				$pdf->setHeader('center', '&nbsp;');
 				$pdf->setUseCss(true);
 				$fp = fopen($pdf->convert(), "r");
@@ -660,7 +660,7 @@ class ReportesController extends AppController {
 		$worksheet->write(10, 3, 'Grupo', $format_head);
 		$worksheet->write(10, 4, 'Precio', $format_head);
 		$worksheet->write(10, 5, 'Propiedad', $format_head);
-		$worksheet->write(10, 6, 'Situación', $format_head);
+		$worksheet->write(10, 6, 'Situaciï¿½n', $format_head);
 		$worksheet->write(10, 7, 'Marca', $format_head);
 		$worksheet->write(10, 8, 'Color', $format_head);
 		$worksheet->write(10, 9, 'Modelo', $format_head);
@@ -736,7 +736,7 @@ class ReportesController extends AppController {
 				$pdf->setUnderlineLinks(true);
 				$pdf->setScaleFactor('0.8');
 				$pdf->setUseColor(true);
-				$pdf->setFooter('center', 'Página $N');
+				$pdf->setFooter('center', 'Pï¿½gina $N');
 				$pdf->setHeader('center', '&nbsp;');
 				$pdf->setUseCss(true);
 				$fp = fopen($pdf->convert(), "r");
@@ -824,7 +824,7 @@ class ReportesController extends AppController {
 				$ceco_id = $ceco[0]['ceco_id'];
 				
 				$worksheet = $workbook->addWorksheet();
-				$worksheet->write(6, 0, "Ubicación");
+				$worksheet->write(6, 0, "Ubicaciï¿½n");
 				$worksheet->write(6, 1, utf8_decode($this->CentroCosto->findUbicacion($ceco_id)));
 				
 				$worksheet->write(8, 3, "REPORTE GENERAL DE ACTIVOS FIJOS ".utf8_decode($ceco_nombre));
@@ -835,7 +835,7 @@ class ReportesController extends AppController {
 				$worksheet->write(10, 3, 'Grupo', $format_head);
 				$worksheet->write(10, 4, 'Precio', $format_head);
 				$worksheet->write(10, 5, 'Propiedad', $format_head);
-				$worksheet->write(10, 6, 'Situación', $format_head);
+				$worksheet->write(10, 6, 'Situaciï¿½n', $format_head);
 				$worksheet->write(10, 7, 'Marca', $format_head);
 				$worksheet->write(10, 8, 'Color', $format_head);
 				$worksheet->write(10, 9, 'Modelo', $format_head);
@@ -1098,7 +1098,7 @@ class ReportesController extends AppController {
 				$pdf->setUnderlineLinks(true);
 				$pdf->setScaleFactor('0.8');
 				$pdf->setUseColor(true);
-				$pdf->setFooter('center', 'Página $N');
+				$pdf->setFooter('center', 'Pï¿½gina $N');
 				$pdf->setHeader('center', '&nbsp;');
 				$fp = fopen($pdf->convert(), "r");
 				
@@ -1173,7 +1173,7 @@ class ReportesController extends AppController {
 				$pdf->setUnderlineLinks(true);
 				$pdf->setScaleFactor('0.8');
 				$pdf->setUseColor(true);
-				$pdf->setFooter('center', 'Página $N');
+				$pdf->setFooter('center', 'Pï¿½gina $N');
 				$pdf->setHeader('center', '&nbsp;');
 				$fp = fopen($pdf->convert(), "r");
 				
@@ -1260,17 +1260,17 @@ class ReportesController extends AppController {
 			$info = $this->ActivoFijo->itemsTransito();
 			
 			$worksheet->write(10, 0, 'ID Producto', $format_head);
-			$worksheet->write(10, 1, 'Código', $format_head);
+			$worksheet->write(10, 1, 'Cï¿½digo', $format_head);
 			$worksheet->write(10, 2, 'Nombre', $format_head);
 			$worksheet->write(10, 3, 'Tipo de Bien', $format_head);
 			$worksheet->write(10, 4, 'Propiedad', $format_head);
-			$worksheet->write(10, 5, 'Situación', $format_head);
+			$worksheet->write(10, 5, 'Situaciï¿½n', $format_head);
 			$worksheet->write(10, 6, 'Marca', $format_head);
 			$worksheet->write(10, 7, 'Color', $format_head);
-			$worksheet->write(10, 8, 'Fecha de Garantía', $format_head);
+			$worksheet->write(10, 8, 'Fecha de Garantï¿½a', $format_head);
 			$worksheet->write(10, 9, 'Precio', $format_head);
-			$worksheet->write(10, 10, '¿Es Depreciable?', $format_head);
-			$worksheet->write(10, 11, 'Vida Útil', $format_head);
+			$worksheet->write(10, 10, 'ï¿½Es Depreciable?', $format_head);
+			$worksheet->write(10, 11, 'Vida ï¿½til', $format_head);
 			$worksheet->write(10, 12, 'Tipo de Movimiento', $format_head);
 			$worksheet->write(10, 13, 'Centro de Costo Padre', $format_head);
 			$worksheet->write(10, 14, 'Centro de Costo', $format_head);
@@ -1327,7 +1327,7 @@ class ReportesController extends AppController {
 			$info = $this->Existencia->itemsTransito();
 			
 			$worksheet->write(10, 0, 'ID Producto', $format_head);
-			$worksheet->write(10, 1, 'Código', $format_head);
+			$worksheet->write(10, 1, 'Cï¿½digo', $format_head);
 			$worksheet->write(10, 2, 'Nombre', $format_head);
 			$worksheet->write(10, 3, 'Tipo de Bien', $format_head);
 			$worksheet->write(10, 4, 'Familia', $format_head);
@@ -1391,7 +1391,7 @@ class ReportesController extends AppController {
 				$pdf->setUnderlineLinks(true);
 				$pdf->setScaleFactor('0.8');
 				$pdf->setUseColor(true);
-				$pdf->setFooter('center', 'Página $N');
+				$pdf->setFooter('center', 'Pï¿½gina $N');
 				$pdf->setHeader('center', '&nbsp;');
 				$fp = fopen($pdf->convert(), "r");
 				
@@ -1469,19 +1469,19 @@ class ReportesController extends AppController {
 					
 					if ($key == "ACTIVOS FIJOS") {
 						$worksheet->write(10, 0, 'ID Producto', $format_head);
-						$worksheet->write(10, 1, 'Código', $format_head);
+						$worksheet->write(10, 1, 'Cï¿½digo', $format_head);
 						$worksheet->write(10, 2, 'Nombre', $format_head);
 						$worksheet->write(10, 3, 'Grupo', $format_head);
 						$worksheet->write(10, 4, 'Familia', $format_head);
 						$worksheet->write(10, 5, 'Tipo de Bien', $format_head);
 						$worksheet->write(10, 6, 'Propiedad', $format_head);
-						$worksheet->write(10, 7, 'Situación', $format_head);
+						$worksheet->write(10, 7, 'Situaciï¿½n', $format_head);
 						$worksheet->write(10, 8, 'Marca', $format_head);
 						$worksheet->write(10, 9, 'Color', $format_head);
-						$worksheet->write(10, 10, 'Fecha de Garantía', $format_head);
+						$worksheet->write(10, 10, 'Fecha de Garantï¿½a', $format_head);
 						$worksheet->write(10, 11, 'Precio', $format_head);
-						$worksheet->write(10, 12, '¿Es Depreciable?', $format_head);
-						$worksheet->write(10, 13, 'Vida Útil', $format_head);
+						$worksheet->write(10, 12, 'ï¿½Es Depreciable?', $format_head);
+						$worksheet->write(10, 13, 'Vida ï¿½til', $format_head);
 						$worksheet->write(10, 14, 'Centro de Costo (Unidad)', $format_head);
 						$worksheet->write(10, 15, 'Dependencia', $format_head);
 						$worksheet->write(10, 16, 'Establecimiento', $format_head);
@@ -1548,7 +1548,7 @@ class ReportesController extends AppController {
 					} elseif ($key == "EXISTENCIAS") {
 						
 						$worksheet->write(10, 0, 'ID Producto', $format_head);
-						$worksheet->write(10, 1, 'Código', $format_head);
+						$worksheet->write(10, 1, 'Cï¿½digo', $format_head);
 						$worksheet->write(10, 2, 'Nombre', $format_head);
 						$worksheet->write(10, 3, 'Tipo de Bien', $format_head);
 						$worksheet->write(10, 4, 'Familia', $format_head);
@@ -1639,7 +1639,7 @@ class ReportesController extends AppController {
 				$pdf->setUnderlineLinks(true);
 				$pdf->setScaleFactor('0.8');
 				$pdf->setUseColor(true);
-				$pdf->setFooter('center', 'Página $N');
+				$pdf->setFooter('center', 'Pï¿½gina $N');
 				$pdf->setHeader('center', '&nbsp;');
 				$fp = fopen($pdf->convert(), "r");
 				
@@ -1772,7 +1772,7 @@ class ReportesController extends AppController {
 				$pdf->setUnderlineLinks(true);
 				$pdf->setScaleFactor('0.8');
 				$pdf->setUseColor(true);
-				$pdf->setFooter('center', 'Página $N');
+				$pdf->setFooter('center', 'Pï¿½gina $N');
 				$pdf->setHeader('center', '&nbsp;');
 				$fp = fopen($pdf->convert(), "r");
 				
@@ -1834,7 +1834,7 @@ class ReportesController extends AppController {
 		$format_head->setFgColor('yellow');
 		$format_head->setBorder(1);
 		
-		$worksheet->write(10, 0, 'Código', $format_head);
+		$worksheet->write(10, 0, 'Cï¿½digo', $format_head);
 		$worksheet->write(10, 1, 'Nombre', $format_head);
 		$worksheet->write(10, 2, 'Centro de Costo/Salud Destino', $format_head);
 		$worksheet->write(10, 3, 'Tipo Bien', $format_head);
@@ -1842,11 +1842,11 @@ class ReportesController extends AppController {
 		$worksheet->write(10, 5, 'Marca', $format_head);
 		$worksheet->write(10, 6, 'Propiedad', $format_head);
 		$worksheet->write(10, 7, 'Color', $format_head);
-		$worksheet->write(10, 8, 'Situación', $format_head);
+		$worksheet->write(10, 8, 'Situaciï¿½n', $format_head);
 		$worksheet->write(10, 9, 'Modelo', $format_head);
 		$worksheet->write(10, 10, 'Serie', $format_head);
-		$worksheet->write(10, 11, 'Fecha Adquisición', $format_head);
-		$worksheet->write(10, 12, 'Fecha Garantía', $format_head);
+		$worksheet->write(10, 11, 'Fecha Adquisiciï¿½n', $format_head);
+		$worksheet->write(10, 12, 'Fecha Garantï¿½a', $format_head);
 		
 		// Formato de celdas
 		$format_cell = $workbook->addFormat();
@@ -1932,7 +1932,7 @@ class ReportesController extends AppController {
 				$pdf->setUnderlineLinks(true);
 				$pdf->setScaleFactor('0.8');
 				$pdf->setUseColor(true);
-				$pdf->setFooter('center', 'Página $N');
+				$pdf->setFooter('center', 'Pï¿½gina $N');
 				$pdf->setHeader('center', '&nbsp;');
 				$fp = fopen($pdf->convert(), "r");
 				
@@ -1985,7 +1985,7 @@ class ReportesController extends AppController {
 				$pdf->setUnderlineLinks(true);
 				$pdf->setScaleFactor('0.8');
 				$pdf->setUseColor(true);
-				$pdf->setFooter('center', 'Página $N');
+				$pdf->setFooter('center', 'Pï¿½gina $N');
 				$pdf->setHeader('center', '&nbsp;');
 				$fp = fopen($pdf->convert(), "r");
 				
@@ -2039,7 +2039,7 @@ class ReportesController extends AppController {
 		$format_head->setBorder(1);
 		
 		$worksheet->write(3, 0, 'Centro Costo', $format_head);
-		$worksheet->write(3, 1, 'Descripción', $format_head);
+		$worksheet->write(3, 1, 'Descripciï¿½n', $format_head);
 		$worksheet->write(3, 2, 'Stock Total', $format_head);
 		
 				
@@ -2084,7 +2084,7 @@ class ReportesController extends AppController {
 		$format_head->setFgColor('yellow');
 		$format_head->setBorder(1);
 		
-		$worksheet->write(3, 0, 'Descripción', $format_head);
+		$worksheet->write(3, 0, 'Descripciï¿½n', $format_head);
 		$worksheet->write(3, 1, 'Stock Total', $format_head);
 				
 		// Formato de celdas
@@ -2133,18 +2133,18 @@ class ReportesController extends AppController {
 		$format_head->setBorder(1);
 		
 		$worksheet->write(3, 0, 'Fecha Baja', $format_head);
-		$worksheet->write(3, 1, 'Código', $format_head);
+		$worksheet->write(3, 1, 'Cï¿½digo', $format_head);
 		$worksheet->write(3, 2, 'Producto', $format_head);
 		$worksheet->write(3, 3, 'Precio', $format_head);
 		$worksheet->write(3, 4, 'Depreciable', $format_head);
-		$worksheet->write(3, 5, 'Vida Útil', $format_head);
-		$worksheet->write(3, 6, 'Número de Documento', $format_head);
+		$worksheet->write(3, 5, 'Vida ï¿½til', $format_head);
+		$worksheet->write(3, 6, 'Nï¿½mero de Documento', $format_head);
 		$worksheet->write(3, 7, 'Dependencia Virtual', $format_head);
 		$worksheet->write(3, 8, 'Motivo de Baja', $format_head);
 		$worksheet->write(3, 9, 'Centro Costo (Unidad)', $format_head);
 		$worksheet->write(3, 10, 'Dependencia', $format_head);
 		$worksheet->write(3, 11, 'Establecimiento', $format_head);
-		$worksheet->write(3, 12, 'Observación', $format_head);
+		$worksheet->write(3, 12, 'Observaciï¿½n', $format_head);
 				
 		// Formato de celdas
 		$format_cell = $workbook->addFormat();
@@ -2217,21 +2217,21 @@ class ReportesController extends AppController {
 		$format_head->setFgColor('yellow');
 		$format_head->setBorder(1);
 		
-		$worksheet->write(9, 0, 'Código', $format_head);
+		$worksheet->write(9, 0, 'Cï¿½digo', $format_head);
 		$worksheet->write(9, 1, 'Nombre', $format_head);
 		$worksheet->write(9, 2, 'Grupo', $format_head);	
 		$worksheet->write(9, 3, 'Familia', $format_head);	
 		$worksheet->write(9, 4, 'Movimiento', $format_head);
 		$worksheet->write(9, 5, 'Fecha', $format_head);				
 		$worksheet->write(9, 6, 'Propiedad', $format_head);
-		$worksheet->write(9, 7, 'Situación', $format_head);
+		$worksheet->write(9, 7, 'Situaciï¿½n', $format_head);
 		$worksheet->write(9, 8, 'Marca', $format_head);
 		$worksheet->write(9, 9, 'Color', $format_head);
-		$worksheet->write(9, 10, 'Fecha Garantía', $format_head);
+		$worksheet->write(9, 10, 'Fecha Garantï¿½a', $format_head);
 		$worksheet->write(9, 11, 'Valor', $format_head);
 		$worksheet->write(9, 12, 'Serie', $format_head);
-		$worksheet->write(9, 13, '¿Es Depreciable?', $format_head);
-		$worksheet->write(9, 14, 'Vida Útil', $format_head);
+		$worksheet->write(9, 13, 'ï¿½Es Depreciable?', $format_head);
+		$worksheet->write(9, 14, 'Vida ï¿½til', $format_head);
 		$worksheet->write(9, 15, 'Centro de Costo (Unidad)', $format_head);
 		$worksheet->write(9, 16, 'Dependencia', $format_head);
 
@@ -2244,7 +2244,7 @@ class ReportesController extends AppController {
 		
 		$worksheet->write(2, 3, "REPORTE DE TRAZABILIDAD");
 		//$worksheet->write(4, 0, "Fecha", $format_head);
-		//$worksheet->write(5, 0, "Código", $format_head);
+		//$worksheet->write(5, 0, "Cï¿½digo", $format_head);
 		//$worksheet->write(6, 0, "Nombre", $format_head);
 		//$worksheet->write(4, 1, date('d-m-Y H:i:s'), $format_cell);
 		//$worksheet->writeString(5, 1, $datos_producto['TrazabilidadActivoFijo']['traf_codigo'], $format_cell);
@@ -2329,30 +2329,30 @@ class ReportesController extends AppController {
 		$worksheet->setRow(3, 39);
 		
 		// Titulo
-		$worksheet->write(1, 0, "REPORTE DEPRECIACIÓN POR PRODUCTO", $format_titulo);
+		$worksheet->write(1, 0, "REPORTE DEPRECIACIï¿½N POR PRODUCTO", $format_titulo);
 		
 		$worksheet->write(3, 0, "Producto", $format_head);
-		$worksheet->write(3, 1, "Código de barra", $format_head);
+		$worksheet->write(3, 1, "Cï¿½digo de barra", $format_head);
 		$worksheet->write(3, 2, "Propiedad", $format_head);
-		$worksheet->write(3, 3, "Situación", $format_head);
+		$worksheet->write(3, 3, "Situaciï¿½n", $format_head);
 		$worksheet->write(3, 4, "Marca", $format_head);
 		$worksheet->write(3, 5, "Color", $format_head);
-		$worksheet->write(3, 6, "Fecha de Garantía", $format_head);
-		$worksheet->write(3, 7, "Fecha de adquisición", $format_head);
+		$worksheet->write(3, 6, "Fecha de Garantï¿½a", $format_head);
+		$worksheet->write(3, 7, "Fecha de adquisiciï¿½n", $format_head);
 		$worksheet->write(3, 8, "Valor Libro", $format_head);
 		$worksheet->write(3, 9, "IPC", $format_head);
-		$worksheet->write(3, 10, "Corrección Monetaria", $format_head);
+		$worksheet->write(3, 10, "Correcciï¿½n Monetaria", $format_head);
 		$worksheet->write(3, 11, "Valor Corregido", $format_head);
 		$worksheet->write(3, 12, "Valor Actual", $format_head);
-		$worksheet->write(3, 13, "Depreciación Acumulada Anterior", $format_head);
-		$worksheet->write(3, 14, "Corrección Monetaria (depreciación)", $format_head);
-		$worksheet->write(3, 15, "Valor Corregido (depreciación)", $format_head);
-		$worksheet->write(3, 16, "Vida Útil (próxima ejercicio)", $format_head);
+		$worksheet->write(3, 13, "Depreciaciï¿½n Acumulada Anterior", $format_head);
+		$worksheet->write(3, 14, "Correcciï¿½n Monetaria (depreciaciï¿½n)", $format_head);
+		$worksheet->write(3, 15, "Valor Corregido (depreciaciï¿½n)", $format_head);
+		$worksheet->write(3, 16, "Vida ï¿½til (prï¿½xima ejercicio)", $format_head);
 		$worksheet->write(3, 17, "Valor a Depreciar", $format_head);
-		$worksheet->write(3, 18, "Depreciación", $format_head);
-		$worksheet->write(3, 19, "Depreciación Acumulada", $format_head);
+		$worksheet->write(3, 18, "Depreciaciï¿½n", $format_head);
+		$worksheet->write(3, 19, "Depreciaciï¿½n Acumulada", $format_head);
 		$worksheet->write(3, 20, "Valor Neto", $format_head);
-		$worksheet->write(3, 21, "Año", $format_head);
+		$worksheet->write(3, 21, "Aï¿½o", $format_head);
 		$row_count = 4;			
 		
 		foreach ($info as $row_) {
@@ -2389,7 +2389,7 @@ class ReportesController extends AppController {
 			$worksheet->writeString($row_count, 15, number_format($row_['dede_depr_valor_corregido'], 0, ',', '.'), $format_cell_align);
 			if ($row_['dede_vida_util_prox'] == 0) {
 				$row_['dede_vida_util_prox'] = 'F';
-				$worksheet->writeNote($row_count, 16, 'Finalización vida útil');
+				$worksheet->writeNote($row_count, 16, 'Finalizaciï¿½n vida ï¿½til');
 			}	
 			$worksheet->write($row_count, 16, $row_['dede_vida_util_prox'], $format_cell);
 			$worksheet->writeString($row_count, 17, number_format($row_['depr_valor_a_depreciar'], 0, ',', '.'), $format_cell_align);
@@ -2468,13 +2468,13 @@ class ReportesController extends AppController {
 		//Datos del bien
 		$worksheet->write(2, 0, "Nombre de Producto", $format_titulo);
 		$worksheet->write(2, 1, utf8_decode($infoProducto['Producto']['prod_nombre']), $format_cell2);
-		$worksheet->write(3, 0, "Código", $format_titulo);
+		$worksheet->write(3, 0, "Cï¿½digo", $format_titulo);
 		$worksheet->writeString(3, 1, $ubaf_codigo, $format_cell2);
 		$worksheet->write(4, 0, "Marca", $format_titulo);
 		$worksheet->write(4, 1, utf8_decode($infoMantencion['ActivoFijoMantencion']['afma_marca']), $format_cell2);
 		$worksheet->write(5, 0, "Modelo", $format_titulo);
 		$worksheet->write(5, 1, utf8_decode($infoMantencion['ActivoFijoMantencion']['afma_modelo']), $format_cell2);
-		$worksheet->write(6, 0, "Año", $format_titulo);
+		$worksheet->write(6, 0, "Aï¿½o", $format_titulo);
 		$worksheet->write(6, 1, $infoMantencion['ActivoFijoMantencion']['afma_ano'], $format_cell2);	
 		$worksheet->write(7, 0, "Patente", $format_titulo);
 		$worksheet->write(7, 1, utf8_decode($infoMantencion['ActivoFijoMantencion']['afma_patente']), $format_cell2);
@@ -2482,13 +2482,13 @@ class ReportesController extends AppController {
 		$worksheet->write(8, 1, utf8_decode($infoMantencion['ActivoFijoMantencion']['afma_motor']), $format_cell2);
 		
 		// Encabezado
-		$worksheet->write(10, 0, "Número de Factura", $format_head);
+		$worksheet->write(10, 0, "Nï¿½mero de Factura", $format_head);
 		$worksheet->write(10, 1, "Fecha de Factura", $format_head);
 		$worksheet->write(10, 2, "Trabajo y/o Servicio", $format_head);
 		$worksheet->write(10, 3, "Kilometraje", $format_head);
 		$worksheet->write(10, 4, "Nombre de Operador", $format_head);
 		$worksheet->write(10, 5, "Valor", $format_head);
-		$worksheet->write(10, 6, "Observación", $format_head);
+		$worksheet->write(10, 6, "Observaciï¿½n", $format_head);
 		$worksheet->write(10, 7, "Fecha de Servicio", $format_head);			
 		$worksheet->write(10, 8, "Proveedor", $format_head);
 		$worksheet->write(10, 9, "Centro Costo", $format_head);		
@@ -2626,21 +2626,21 @@ class ReportesController extends AppController {
 		$worksheet->write(0, 1, "GASTOS HISTORICOS POR FUENTE DE FINANCIAMIENTO", $format_titulo);
 		
 		// Encabezado
-		$worksheet->write(3, 0, "Código", $format_head);
+		$worksheet->write(3, 0, "Cï¿½digo", $format_head);
 		$worksheet->write(3, 1, "Nombre Producto", $format_head);
 		$worksheet->write(3, 2, "Fecha", $format_head);
-		$worksheet->write(3, 3, "Año", $format_head);
+		$worksheet->write(3, 3, "Aï¿½o", $format_head);
 		$worksheet->write(3, 4, "Color", $format_head);
 		$worksheet->write(3, 5, "Marca", $format_head);
 		$worksheet->write(3, 6, "Propiedad", $format_head);
 		$worksheet->write(3, 7, "Modelo", $format_head);			
-		$worksheet->write(3, 8, "Situación", $format_head);
+		$worksheet->write(3, 8, "Situaciï¿½n", $format_head);
 		$worksheet->write(3, 9, "Financiamiento", $format_head);
 		$worksheet->write(3, 10, "Precio", $format_head);
 		$worksheet->write(3, 11, "Depreciable", $format_head);
-		$worksheet->write(3, 12, "Vida Útil", $format_head);
+		$worksheet->write(3, 12, "Vida ï¿½til", $format_head);
 		$worksheet->write(3, 13, "Fecha de Garantia", $format_head);
-		$worksheet->write(3, 14, "Fecha de Adquisición", $format_head);
+		$worksheet->write(3, 14, "Fecha de Adquisiciï¿½n", $format_head);
 		$worksheet->write(3, 15, "Serie", $format_head);
 		$worksheet->write(3, 16, 'Centro de Costo (Unidad)', $format_head);
 		$worksheet->write(3, 17, 'Dependencia', $format_head);
@@ -2691,6 +2691,158 @@ class ReportesController extends AppController {
 		$workbook->send('Reporte_Financiamiento.xls');
 		$workbook->close();
 		exit;
+	}
+
+	function bienes_muebles_slep()
+	{
+		$centros_costos = $this->Session->read('userdata.selectCC');
+		$this->set('centros_costos', $centros_costos);
+	}
+
+	function bienes_muebles_general_excel($ceco_id)
+	{
+		$this->layout = 'ajax';		
+		$cc_hijos = $this->ccArrayToCcVector($this->CentroCosto->findAllChildren($ceco_id));
+		$infoCentroCosto = $this->CentroCosto->find('first', array('conditions' => array('CentroCosto.ceco_id' => $ceco_id)));
+		$nombreEstablecimiento = utf8_decode($infoCentroCosto['CentroCosto']['ceco_nombre']);
+		$rbd = $infoCentroCosto['CentroCosto']['ceco_rut'];
+		$comuna = utf8_decode($infoCentroCosto['Comuna']['comu_nombre']);
+		$ceco_id = $cc_hijos;
+		// info general
+		$info = $this->Reporte->bienesMueblesSlep($ceco_id);
+		// agrupar por centro de costo
+		$info_ = array();
+		foreach ($info as $row) {
+			$row = array_pop($row);
+			$info_[$row['ceco_id']][] = $row;
+		}
+	
+		$workbook = new Spreadsheet_Excel_Writer();	
+		$worksheet = $workbook->addWorksheet('Inventario Muebles');
+		$worksheet->setOutline(true, true, true, true);
+		// Formato de cabeceras
+		$format_head = $workbook->addFormat();
+		$format_head->setFgColor('white');
+		$format_head->setHAlign('center');
+		$format_head->setVAlign('vcenter');
+		$format_head->setBorder(1);
+		$format_head->setBold();
+
+		$formatHeadJustify =& $workbook->addFormat();
+		$formatHeadJustify->setHAlign('center');
+		$formatHeadJustify->setVAlign('vjustify');
+		$formatHeadJustify->setBorder(1);
+		$formatHeadJustify->setBold();
+		// Formato celdas cuadro header
+		$formatCuadroFooter = $workbook->addFormat(array('right' => 1, 'top' => 1));
+		$formatCuadroFooter2 = $workbook->addFormat();
+		$formatCuadroFooter2->setBorderColor('white');
+		// Formato de celdas
+		$format_cell = $workbook->addFormat();
+		$format_cell->setBorder(1);
+		$formatCellCenter =& $workbook->addFormat();
+		$formatCellCenter->setBorder(1);
+		$formatCellCenter->setHAlign('center');
+		
+		// tomamos en cuenta el $info = $this->Reporte->activosFijosGeneral();
+		// no el agrupado por centro de costo
+		$worksheet->write(0, 2, "Inventario de Bienes Muebles");
+		$worksheet->write(1, 0, "Comuna: ".$comuna);
+		$worksheet->write(1, 2, "Establecimiento Educacional: ".$nombreEstablecimiento);
+		$worksheet->write(1, 7, utf8_decode("RBD-DV/CÃ³digo JUNJI: ").$rbd);
+		$worksheet->write(3, 0, 'Nivel Educativo', $format_head);
+		$worksheet->write(3, 1, utf8_decode('IndividualizaciÃ³n del bien'), $format_head);
+		$worksheet->write(3, 2, 'Cantidad', $format_head);
+		$worksheet->write(3, 3, utf8_decode('Estado de conservaciÃ³n'), $formatHeadJustify);
+		$worksheet->write(3, 4, utf8_decode('Lugar fÃ­sico'), $format_head);
+		$worksheet->write(3, 5, utf8_decode('Procedencia:    InversiÃ³n o donaciÃ³n'), $formatHeadJustify);
+		$worksheet->write(3, 6, utf8_decode('Procedencia:    Donador o fondo de adquisiciÃ³n'), $formatHeadJustify);
+		$worksheet->write(3, 7, utf8_decode('Procedencia:    Fecha de adquisiciÃ³n'), $formatHeadJustify);
+		//$worksheet->mergeCells(0, 1, 7, 7);
+		$row_count = 4;
+		
+		foreach ($info as $row) {
+			$row = array_pop($row);
+			$fechaAdquisiciÃ³n = (!empty($row['ubaf_fecha_adquisicion'])) ? date("d-m-Y", strtotime($row['ubaf_fecha_adquisicion'])) : utf8_decode("Sin informaciÃ³n");
+			$observaciones = (!empty($row['acfi_observaciones'])) ? utf8_decode($row['acfi_observaciones']) : utf8_decode("Sin informaciÃ³n");
+			$financiamiento = (!empty($row['fina_nombre'])) ? utf8_decode($row['fina_nombre']) : utf8_decode("Sin informaciÃ³n");
+			$worksheet->write($row_count, 0, utf8_decode($row['nied_nombre']), $formatCellCenter);
+			$worksheet->write($row_count, 1, utf8_decode($row['prod_nombre']), $format_cell);
+			$worksheet->write($row_count, 2, $row['total'], $formatCellCenter);
+			$worksheet->write($row_count, 3, utf8_decode($row['situ_nombre']), $format_cell);
+			$worksheet->write($row_count, 4, utf8_decode($row['ceco_nombre']), $format_cell);
+			$worksheet->write($row_count, 5, $observaciones, $format_cell);
+			$worksheet->write($row_count, 6, $financiamiento, $formatCellCenter);
+			$worksheet->write($row_count, 7, $fechaAdquisiciÃ³n, $formatCellCenter);
+			$row_count++;
+		}
+
+		$worksheet->write($row_count+2, 0, utf8_decode('Yo Director(a) Sr./ Sra./Srta. _____________________________, del Establecimiento Educacional ___________________________________, RBD/CÃ³digo JUNJI _______________,'), $formatCuadroFooter2);
+		$worksheet->write($row_count+3, 0, utf8_decode('con fecha ____ de _________de 20___, doy fe que la informaciÃ³n individualizada corresponde a los Bienes Muebles afectos a la prestaciÃ³n del servicio educacional del'), $formatCuadroFooter2);
+		$worksheet->write($row_count+4, 0, utf8_decode('Establecimiento que dirijo con su actual estado de conservaciÃ³n.'), $formatCuadroFooter2);
+		$worksheet->write($row_count+5, 0, utf8_decode('                                                                                                                                     _____________________________________________________________________'), $formatCuadroFooter2);
+		$worksheet->write($row_count+6, 0, utf8_decode('                                                                                                                                                   FIRMA Y TIMBRE DIRECTOR DEL ESTABLECIMIENTO'), $formatCuadroFooter2);
+		// Definimos largo de fila
+		$worksheet->setRow(3, 40); // First row, height 15
+		// Definimos ancho de columnas
+		$worksheet->setColumn(0, 0, 15);
+		$worksheet->setColumn(0, 1, 60);
+		$worksheet->setColumn(0, 2, 12);
+		$worksheet->setColumn(0, 3, 15);
+		$worksheet->setColumn(0, 4, 45);
+		$worksheet->setColumn(0, 5, 20);
+		$worksheet->setColumn(0, 6, 20);
+		$worksheet->setColumn(0, 7, 20);
+		//$worksheet->mergeCells($row_count+1, 0, $row_count+6, 7);
+		$worksheet->mergeCells($row_count+1, 0, $row_count+1, 13);
+		$worksheet->mergeCells($row_count+2, 0, $row_count+2, 13);
+		$worksheet->mergeCells($row_count+3, 0, $row_count+3, 13);
+		$worksheet->mergeCells($row_count+4, 0, $row_count+4, 13);
+		$worksheet->mergeCells($row_count+5, 0, $row_count+5, 13);
+		$worksheet->mergeCells($row_count+6, 0, $row_count+6, 13);
+		$worksheet->mergeCells($row_count+7, 0, $row_count+7, 13);
+		ob_clean();
+		$workbook->send('INVENTARIOMUEBLES.'.trim($rbd).'.'.str_replace(' ', '', $nombreEstablecimiento).'.'.$comuna.'.xls');
+		$workbook->close();
+	}
+
+	function bienes_muebles_general_pdf_html($ceco_id) {
+		$this->layout = 'ajax';
+		$infoCentroCosto = $this->CentroCosto->find('first', array('conditions' => array('CentroCosto.ceco_id' => $ceco_id)));
+		// info general
+		$cc_hijos = $this->ccArrayToCcVector($this->CentroCosto->findAllChildren($ceco_id));
+		$ceco_id = $cc_hijos;
+		$info = $this->Reporte->bienesMueblesSlep($ceco_id);
+		$this->set('info', $info);
+		$this->set('infoCentroCosto', $infoCentroCosto);
+		ob_clean();
+	}
+
+	function bienes_muebles_general_pdf($ceco_id)
+	{
+		$this->layout = "ajax";
+		$logo = $this->Configuracion->obtieneLogo();
+		$fp = @fopen($_SERVER['DOCUMENT_ROOT']."/app/webroot/files/logo.png", "w");
+		
+		if ($fp == true) {
+			fputs($fp, base64_decode($logo));
+			fclose($fp);
+			
+			try {					
+				$html = file_get_contents("http://".$_SERVER['HTTP_HOST']."/reportes/bienes_muebles_general_pdf_html/".$ceco_id);
+				$dompdf = new DOMPDF();
+				$dompdf->load_html($html);
+				$dompdf->set_paper('A4', 'landscape');
+				$dompdf->render();									
+				$dompdf->stream("Bienes_Muebles_".date('d_m_Y_H_i_s').".pdf");		
+								
+			} catch (DOMPDF_Exception $e) {
+				echo $e->getMessage();
+			}
+		} else {
+			$this->Session->setFlash(__('No se puede generar el logo para el reporte', true));
+			$this->redirect(array('action' => 'activos_fijos_general'));
+		}
 	}
 }
 ?>

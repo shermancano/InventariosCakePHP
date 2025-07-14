@@ -43,7 +43,8 @@ class AppController extends Controller {
 			&& !preg_match('/\/reportes\/traslados_por_fechas_activos_fijos_pdf_html\/[\d]+\/([\d]+|null)\/[\d]+\/([\w\-]+|[\d]+)\/([\w\-]+|[\d]+)/', $this->here)
 			&& !preg_match('/\/reportes\/traslados_por_fechas_existencias_pdf_html\/[\d]+\/([\d]+|null)\/[\d]+\/([\w\-]+|[\d]+)\/([\w\-]+|[\d]+)/', $this->here)
 			&& !preg_match('/\/reportes\/transito_pdf_html\/[\d]+/', $this->here)
-			&& !preg_match('/\/solicitudes\/comprobante_html\/[\d]+/', $this->here)) {
+			&& !preg_match('/\/solicitudes\/comprobante_html\/[\d]+/', $this->here)
+			&& !preg_match('/\/reportes\/bienes_muebles_general_pdf_html\/[\d]+/', $this->here)) {
 			
 			$this->redirect(array('action' => 'index', 'controller' => 'login'));
 			exit;
@@ -63,7 +64,7 @@ class AppController extends Controller {
 				// sacamos metodos de generacion de docs y otros
 				if (!preg_match("/(excel|genera|pdf|html|get|find|search|ajax|demo)/", $path)) {
 					if (!in_array($path, $permisos)) {
-						$this->Session->setFlash(__(utf8_encode('Su perfil de usuario no está autorizado a hacer uso de este módulo.'), true));
+						$this->Session->setFlash(__(utf8_encode('Su perfil de usuario no estï¿½ autorizado a hacer uso de este mï¿½dulo.'), true));
 						// aqui deberia guardar la accion en el log
 						if (isset($_SERVER['HTTP_REFERER'])) {
 							$this->redirect($_SERVER['HTTP_REFERER']);

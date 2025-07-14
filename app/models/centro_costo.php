@@ -5,12 +5,22 @@ class CentroCosto extends AppModel {
 	var $primaryKey = 'ceco_id';
 	
 	var $belongsTo = array(
-	 	 'Comuna' => array('className' => 'Comuna',
-	 	 	 			   'foreignKey' => 'comu_id')
-	 	,'CentroCosto2' => array('className' => 'CentroCosto',
-	 	 	 			   	     'foreignKey' => 'ceco_id_padre')
-		,'TipoLocalizacion' => array('className' => 'TipoLocalizacion',
-										'foreignKey' => 'tilo_id')
+	 	 'Comuna' => array(
+			'className' => 'Comuna',
+	 	 	'foreignKey' => 'comu_id'
+		)
+	 	,'CentroCosto2' => array(
+			'className' => 'CentroCosto',
+	 		'foreignKey' => 'ceco_id_padre'
+		)
+		,'TipoLocalizacion' => array(
+			'className' => 'TipoLocalizacion',
+			'foreignKey' => 'tilo_id'
+		)
+		,'NivelEducativo' => array(
+			'className' => 'NivelEducativo',
+			'foreignKey' => 'nied_id'
+		)
 	);
 	
 	var $validate = array(
