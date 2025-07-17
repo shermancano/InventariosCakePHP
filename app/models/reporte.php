@@ -542,39 +542,24 @@ class Reporte extends AppModel {
 		return $res;	
 	}
 
-	function bienesMueblesSlep($ceco_id) {	
+	function bienesMueblesSlep($ceco_id)
+	{
 		$sql = "select ceco.ceco_id
 		              ,ceco.ceco_nombre
 				      ,prod.prod_nombre
 				      ,prod.prod_id
-					  ,tibi.tibi_nombre
 					  ,situ.situ_nombre
-					  ,fami.fami_nombre
-					  ,ubaf.ubaf_fecha_adquisicion		              				      
-					  ,tibi.tibi_nombre
-					  ,fami.fami_nombre
-					  ,grup.grup_nombre
-					  ,ubaf.ubaf_precio
-					  ,prop.prop_nombre					  
-					  ,marc.marc_nombre
-					  ,colo.colo_nombre
-					  ,mode.mode_nombre
-					  ,ubaf.ubaf_serie
+					  ,situ.situ_id
+					  ,ubaf.ubaf_fecha_adquisicion
 					  ,count(*) as total
-					  ,acfi.acfi_observaciones
-					  ,fina.fina_nombre
 					  ,nied.nied_nombre
+					  ,fina.fina_nombre
+					  ,MAX(acfi.acfi_id) AS acfi_id
 				from ubicaciones_activos_fijos as ubaf
 				left join centros_costos as ceco using (ceco_id)
 				left join niveles_educativos as nied using (nied_id)
 				left join productos as prod using (prod_id)
-				left join propiedades as prop using (prop_id)
 				left join situaciones as situ using (situ_id)
-				left join marcas as marc using (marc_id)
-				left join colores as colo using (colo_id)
-				left join modelos as mode using (mode_id)
-				left join grupos as grup using (grup_id)
-				left join familias as fami using (fami_id)
 				left join tipos_bienes as tibi using (tibi_id)
 				inner join detalle_activos_fijos as deaf on (deaf.deaf_codigo = ubaf.ubaf_codigo)
 				inner join activos_fijos as acfi on (acfi.acfi_id = deaf.acfi_id)
@@ -585,21 +570,11 @@ class Reporte extends AppModel {
 						,ceco.ceco_nombre
 						,prod.prod_nombre
 						,prod.prod_id
-						,tibi.tibi_nombre
 						,situ.situ_nombre
-						,fami.fami_nombre
-						,grup.grup_nombre
-						,ubaf.ubaf_precio
-						,prop.prop_nombre
-						,situ.situ_nombre
-						,marc.marc_nombre
-						,colo.colo_nombre
-						,mode.mode_nombre
-						,ubaf.ubaf_serie
+						,situ.situ_id
 						,ubaf.ubaf_fecha_adquisicion
-						,acfi.acfi_observaciones
-						,fina.fina_nombre
 						,nied.nied_nombre
+						,fina.fina_nombre
 				order by ceco.ceco_nombre
 						,prod.prod_nombre asc;";
 		$res = $this->query($sql);

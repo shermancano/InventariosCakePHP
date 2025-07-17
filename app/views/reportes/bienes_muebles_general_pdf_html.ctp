@@ -36,14 +36,26 @@
         $fechaAdquisición = (!empty($row['ubaf_fecha_adquisicion'])) ? date("d-m-Y", strtotime($row['ubaf_fecha_adquisicion'])) : utf8_decode("Sin información");
         $observaciones = (!empty($row['acfi_observaciones'])) ? utf8_decode($row['acfi_observaciones']) : utf8_decode("Sin información");
         $financiamiento = (!empty($row['fina_nombre'])) ? utf8_decode($row['fina_nombre']) : utf8_decode("Sin información");
+        $finaTexto = str_replace(array('Ó', 'ó'), array('O', 'o'), $row['fina_nombre']);
+        $finaTexto = strtolower($finaTexto);
+        $procedencia = 'Sin Información';
+
+        if (!empty($finaTexto)) {
+            $finaTexto = trim($finaTexto);
+            if (in_array($finaTexto, array('donación', 'donacion'))) {
+                $procedencia = 'donación';
+            } else {
+                $procedencia = 'inversión';
+            }
+        }
     ?>
     <tr>
-        <td align="center"><font size="1"><?php echo utf8_decode($row['nied_nombre']); ?></font></td>
+        <td align="center"><font size="1"><?php echo utf8_decode($infoCentroCosto['NivelEducativo']['nied_nombre']); ?></font></td>
         <td><font size="1"><?php echo utf8_decode($row['prod_nombre']); ?></font></td>
         <td align="center"><font size="1"><?php echo $row['total']; ?></font></td>
         <td align="center"><font size="1"><?php echo utf8_decode($row['situ_nombre']); ?></font></td>
         <td><font size="1"><?php echo utf8_decode($row['ceco_nombre']); ?></font></td>
-        <td><font size="1"><?php echo $observaciones; ?></font></td>
+        <td><font size="1"><?php echo utf8_decode($procedencia); ?></font></td>
         <td align="center"><font size="1"><?php echo $financiamiento; ?></font></td>
         <td align="center"><font size="1"><?php echo $fechaAdquisición; ?></font></td>
     </tr>
@@ -52,12 +64,27 @@
 ?>
 </table>
 <br><br>
+<?php
+    $rbd = $infoCentroCosto['CentroCosto']['ceco_rut'];
+    $firmaRbd = '_______________';
+    if (!empty($rbd)) {
+        $firmaRbd = $rbd;
+    }
+    $nombreDirector = "_____________________________";
+    if (!empty($buscaEncargadoEstablecimiento)) {
+        $nombreDirector = explode(",", $buscaEncargadoEstablecimiento);
+        $nombreDirector = $nombreDirector[0];
+    }
+    $dia = date('d');
+    $mes = date('m');
+    $year = date('Y');
+?>
 <table style="page-break-before: always; break-before: always; border: 1px solid black;" width="100%" cellpadding="2" cellspacing="2">
     <tbody>
         <tr>
             <td><font size="2"><br>
-                Yo Director(a) Sr./ Sra./Srta. _____________________________, del Establecimiento Educacional ___________________________________, RBD/C&oacute;digo JUNJI _______________,<br>
-                con fecha _____ de ____________ de 20____, doy fe que la informaci&oacute;n individualizada corresponde a los Bienes Muebles afectos a la prestaci&oacute;n del servicio educacional del<br>
+                Yo Director(a) Sr./ Sra./Srta. <?php echo utf8_decode($nombreDirector) ?>, del Establecimiento Educacional <?php echo utf8_decode($infoCentroCosto['CentroCosto']['ceco_nombre']);?>, RBD/C&oacute;digo JUNJI <?php echo $firmaRbd; ?>,<br>
+                con fecha <?php echo $dia; ?> de <?php echo $mes; ?> de <?php echo $year; ?>, doy fe que la informaci&oacute;n individualizada corresponde a los Bienes Muebles afectos a la prestaci&oacute;n del servicio educacional del<br>
                 Establecimiento que dirijo con su actual estado de conservaci&oacute;n.<br><br>
             </td>
         </tr>

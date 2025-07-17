@@ -2704,9 +2704,17 @@ class ReportesController extends AppController {
 		$this->layout = 'ajax';		
 		$cc_hijos = $this->ccArrayToCcVector($this->CentroCosto->findAllChildren($ceco_id));
 		$infoCentroCosto = $this->CentroCosto->find('first', array('conditions' => array('CentroCosto.ceco_id' => $ceco_id)));
+		$buscaEncargadoEstablecimiento = $this->Responsable->CentroCosto->buscaEncargadoEstablecimiento($ceco_id);
+		$nombreDirector = "";
+		if (!empty($buscaEncargadoEstablecimiento)) {
+			$nombreDirector = explode(",", $buscaEncargadoEstablecimiento);
+			$nombreDirector = $nombreDirector[0];
+		}
+		
 		$nombreEstablecimiento = utf8_decode($infoCentroCosto['CentroCosto']['ceco_nombre']);
 		$rbd = $infoCentroCosto['CentroCosto']['ceco_rut'];
 		$comuna = utf8_decode($infoCentroCosto['Comuna']['comu_nombre']);
+		$nivelEducativo = utf8_decode($infoCentroCosto['NivelEducativo']['nied_nombre']);
 		$ceco_id = $cc_hijos;
 		// info general
 		$info = $this->Reporte->bienesMueblesSlep($ceco_id);
@@ -2718,15 +2726,31 @@ class ReportesController extends AppController {
 		}
 	
 		$workbook = new Spreadsheet_Excel_Writer();	
-		$worksheet = $workbook->addWorksheet('Inventario Muebles');
-		$worksheet->setOutline(true, true, true, true);
+		$worksheet = &$workbook->addWorksheet('Inventario Muebles');
+		$worksheet->setFooter(utf8_decode('Página &P de &N'));
+		$worksheet->setHeader('&L'.PHP_EOL.'Comuna: '.$comuna.' &CInventario de Bienes Muebles'.PHP_EOL.' Establecimiento: '.trim($nombreEstablecimiento).'&R'.PHP_EOL.utf8_decode('RBD-DV/Código JUNJI: ').$rbd, 0.5);
+		$worksheet->setLandscape();
+		$worksheet->setMarginLeft(0.3); // Set left margin to 1 inch
+		$worksheet->setMarginRight(0.3); // Set right margin to 0.75 inches
+		$worksheet->setPrintScale(65);
+		// Set column width for column A to 20 characters wide
+		$worksheet->setColumn(0, 0, 15);
+		$worksheet->setColumn(1, 1, 60);
+		$worksheet->setColumn(2, 2, 11);
+		$worksheet->setColumn(3, 3, 16);
+		$worksheet->setColumn(4, 4, 35);
+		$worksheet->setColumn(5, 5, 20);
+		$worksheet->setColumn(6, 6, 20);
+		$worksheet->setColumn(7, 7, 20);
+		//$worksheet->setOutline(true);
 		// Formato de cabeceras
 		$format_head = $workbook->addFormat();
 		$format_head->setFgColor('white');
 		$format_head->setHAlign('center');
-		$format_head->setVAlign('vcenter');
+		$format_head->setAlign('vcenter');
 		$format_head->setBorder(1);
 		$format_head->setBold();
+		$format_head->setSize(10);
 
 		$formatHeadJustify =& $workbook->addFormat();
 		$formatHeadJustify->setHAlign('center');
@@ -2734,87 +2758,108 @@ class ReportesController extends AppController {
 		$formatHeadJustify->setBorder(1);
 		$formatHeadJustify->setBold();
 		// Formato celdas cuadro header
-		$formatCuadroFooter = $workbook->addFormat(array('right' => 1, 'top' => 1));
-		$formatCuadroFooter2 = $workbook->addFormat();
-		$formatCuadroFooter2->setBorderColor('white');
+		$formatCuadroFooter2 =& $workbook->addFormat();
+		$formatCuadroFooter2->setFgColor('white');
+		$formatCuadroFooter2->setHAlign('center');
+		$formatCuadroFooter2->setVAlign('vjustify');
+		$formatCuadroFooter2->setBorder(1);
 		// Formato de celdas
-		$format_cell = $workbook->addFormat();
+		$format_cell =& $workbook->addFormat();
 		$format_cell->setBorder(1);
+		$format_cell->setVAlign('vjustify');
 		$formatCellCenter =& $workbook->addFormat();
 		$formatCellCenter->setBorder(1);
 		$formatCellCenter->setHAlign('center');
+		$formatCellCenter->setAlign('vcenter');
 		
-		// tomamos en cuenta el $info = $this->Reporte->activosFijosGeneral();
-		// no el agrupado por centro de costo
-		$worksheet->write(0, 2, "Inventario de Bienes Muebles");
-		$worksheet->write(1, 0, "Comuna: ".$comuna);
-		$worksheet->write(1, 2, "Establecimiento Educacional: ".$nombreEstablecimiento);
-		$worksheet->write(1, 7, utf8_decode("RBD-DV/Código JUNJI: ").$rbd);
-		$worksheet->write(3, 0, 'Nivel Educativo', $format_head);
-		$worksheet->write(3, 1, utf8_decode('Individualización del bien'), $format_head);
-		$worksheet->write(3, 2, 'Cantidad', $format_head);
-		$worksheet->write(3, 3, utf8_decode('Estado de conservación'), $formatHeadJustify);
-		$worksheet->write(3, 4, utf8_decode('Lugar físico'), $format_head);
-		$worksheet->write(3, 5, utf8_decode('Procedencia:    Inversión o donación'), $formatHeadJustify);
-		$worksheet->write(3, 6, utf8_decode('Procedencia:    Donador o fondo de adquisición'), $formatHeadJustify);
-		$worksheet->write(3, 7, utf8_decode('Procedencia:    Fecha de adquisición'), $formatHeadJustify);
-		//$worksheet->mergeCells(0, 1, 7, 7);
-		$row_count = 4;
-		
+		$worksheet->write(0, 0, 'Nivel Educativo', $format_head);
+		$worksheet->write(0, 1, utf8_decode('Individualización del bien'), $format_head);
+		$worksheet->write(0, 2, 'Cantidad', $format_head);
+		$worksheet->write(0, 3, utf8_decode('Estado de conservación'), $formatHeadJustify);
+		$worksheet->write(0, 4, utf8_decode('Lugar físico'), $format_head);
+		$worksheet->write(0, 5, utf8_decode('Procedencia:    Inversión o donación'), $formatHeadJustify);
+		$worksheet->write(0, 6, utf8_decode('Procedencia:    Donador o fondo de adquisición'), $formatHeadJustify);
+		$worksheet->write(0, 7, utf8_decode('Procedencia:    Fecha de adquisición'), $formatHeadJustify);
+		$row_count = 1;
+		$cantidadFilasXPagina = 56;
+		$totalFilasUltimaPagina = 1;
+		$cantidadPagina = 1;
 		foreach ($info as $row) {
 			$row = array_pop($row);
 			$fechaAdquisición = (!empty($row['ubaf_fecha_adquisicion'])) ? date("d-m-Y", strtotime($row['ubaf_fecha_adquisicion'])) : utf8_decode("Sin información");
-			$observaciones = (!empty($row['acfi_observaciones'])) ? utf8_decode($row['acfi_observaciones']) : utf8_decode("Sin información");
 			$financiamiento = (!empty($row['fina_nombre'])) ? utf8_decode($row['fina_nombre']) : utf8_decode("Sin información");
-			$worksheet->write($row_count, 0, utf8_decode($row['nied_nombre']), $formatCellCenter);
+			$finaTexto = str_replace(array('Ó', 'ó'), array('O', 'o'), $row['fina_nombre']);
+			$finaTexto = strtolower($finaTexto);
+			$procedencia = 'Sin Información';
+
+			if (!empty($finaTexto)) {
+				$finaTexto = trim($finaTexto);
+				if (in_array($finaTexto, array('donación', 'donacion'))) {
+					$procedencia = 'donación';
+				} else {
+					$procedencia = 'inversión';
+				}
+			}
+			$worksheet->write($row_count, 0, $nivelEducativo, $formatCellCenter);
 			$worksheet->write($row_count, 1, utf8_decode($row['prod_nombre']), $format_cell);
 			$worksheet->write($row_count, 2, $row['total'], $formatCellCenter);
-			$worksheet->write($row_count, 3, utf8_decode($row['situ_nombre']), $format_cell);
+			$worksheet->write($row_count, 3, utf8_decode($row['situ_nombre']), $formatCellCenter);
 			$worksheet->write($row_count, 4, utf8_decode($row['ceco_nombre']), $format_cell);
-			$worksheet->write($row_count, 5, $observaciones, $format_cell);
+			$worksheet->write($row_count, 5, utf8_decode($procedencia), $format_cell);
 			$worksheet->write($row_count, 6, $financiamiento, $formatCellCenter);
 			$worksheet->write($row_count, 7, $fechaAdquisición, $formatCellCenter);
 			$row_count++;
+			$totalFilasUltimaPagina++;
+
+			if ($totalFilasUltimaPagina == $cantidadFilasXPagina) {
+				$totalFilasUltimaPagina = 0;
+				$cantidadPagina++;
+			}
 		}
 
-		$worksheet->write($row_count+2, 0, utf8_decode('Yo Director(a) Sr./ Sra./Srta. _____________________________, del Establecimiento Educacional ___________________________________, RBD/Código JUNJI _______________,'), $formatCuadroFooter2);
-		$worksheet->write($row_count+3, 0, utf8_decode('con fecha ____ de _________de 20___, doy fe que la información individualizada corresponde a los Bienes Muebles afectos a la prestación del servicio educacional del'), $formatCuadroFooter2);
-		$worksheet->write($row_count+4, 0, utf8_decode('Establecimiento que dirijo con su actual estado de conservación.'), $formatCuadroFooter2);
-		$worksheet->write($row_count+5, 0, utf8_decode('                                                                                                                                     _____________________________________________________________________'), $formatCuadroFooter2);
-		$worksheet->write($row_count+6, 0, utf8_decode('                                                                                                                                                   FIRMA Y TIMBRE DIRECTOR DEL ESTABLECIMIENTO'), $formatCuadroFooter2);
+		$difenciaFilas = $cantidadFilasXPagina - $totalFilasUltimaPagina;
+		$difenciaFilas = $row_count + $difenciaFilas;
+		$firmaRbd = '_______________';
+		if (!empty($rbd)) {
+			$firmaRbd = $rbd;
+		}
+		if (!empty($nombreDirector)) {
+			$worksheet->write($difenciaFilas+2, 0, utf8_decode('Yo Director(a) Sr./ Sra./Srta. '.utf8_decode($nombreDirector).', del Establecimiento Educacional '.$nombreEstablecimiento.', RBD/Código JUNJI '.$firmaRbd.','));
+		} else {
+			$worksheet->write($difenciaFilas+2, 0, utf8_decode('Yo Director(a) Sr./ Sra./Srta. _____________________________, del Establecimiento Educacional '.$nombreEstablecimiento.', RBD/Código JUNJI '.$firmaRbd.','));
+		}
+		$dia = date('d');
+		$mes = date('m');
+		$year = date('Y');
+		$worksheet->write($difenciaFilas+3, 0, utf8_decode('con fecha '.$dia.' de '.$mes.' de '.$year.', doy fe que la información individualizada corresponde a los Bienes Muebles afectos a la prestación del servicio educacional del'));
+		$worksheet->write($difenciaFilas+4, 0, utf8_decode('Establecimiento que dirijo con su actual estado de conservación.'));
+		$worksheet->write($difenciaFilas+5, 0, utf8_decode('                                                                                                                                     _____________________________________________________________________'));
+		$worksheet->write($difenciaFilas+6, 0, utf8_decode('                                                                                                                                                   FIRMA Y TIMBRE DIRECTOR DEL ESTABLECIMIENTO'));
 		// Definimos largo de fila
-		$worksheet->setRow(3, 40); // First row, height 15
-		// Definimos ancho de columnas
-		$worksheet->setColumn(0, 0, 15);
-		$worksheet->setColumn(0, 1, 60);
-		$worksheet->setColumn(0, 2, 12);
-		$worksheet->setColumn(0, 3, 15);
-		$worksheet->setColumn(0, 4, 45);
-		$worksheet->setColumn(0, 5, 20);
-		$worksheet->setColumn(0, 6, 20);
-		$worksheet->setColumn(0, 7, 20);
-		//$worksheet->mergeCells($row_count+1, 0, $row_count+6, 7);
-		$worksheet->mergeCells($row_count+1, 0, $row_count+1, 13);
-		$worksheet->mergeCells($row_count+2, 0, $row_count+2, 13);
-		$worksheet->mergeCells($row_count+3, 0, $row_count+3, 13);
-		$worksheet->mergeCells($row_count+4, 0, $row_count+4, 13);
-		$worksheet->mergeCells($row_count+5, 0, $row_count+5, 13);
-		$worksheet->mergeCells($row_count+6, 0, $row_count+6, 13);
-		$worksheet->mergeCells($row_count+7, 0, $row_count+7, 13);
+		//$worksheet->setRow(3, 40); // First row, height 15
+		for ($row = 0; $row < 7; $row++) {
+			$worksheet->mergeCells($difenciaFilas+1, 0, $difenciaFilas+1, 7);
+			$difenciaFilas++;	
+		}
+
+		//$worksheet->write($row_count+6, 0, $totalFilasUltimaPagina);
 		ob_clean();
-		$workbook->send('INVENTARIOMUEBLES.'.trim($rbd).'.'.str_replace(' ', '', $nombreEstablecimiento).'.'.$comuna.'.xls');
+		$workbook->send('INVENTARIOMUEBLES.'.trim($rbd).'.'.str_replace(' ', '', trim($nombreEstablecimiento)).'.'.trim($comuna).'.xls');
 		$workbook->close();
 	}
 
 	function bienes_muebles_general_pdf_html($ceco_id) {
 		$this->layout = 'ajax';
+		ini_set('memory_limit', '3072M');
 		$infoCentroCosto = $this->CentroCosto->find('first', array('conditions' => array('CentroCosto.ceco_id' => $ceco_id)));
 		// info general
+		$buscaEncargadoEstablecimiento = $this->Responsable->CentroCosto->buscaEncargadoEstablecimiento($ceco_id);
 		$cc_hijos = $this->ccArrayToCcVector($this->CentroCosto->findAllChildren($ceco_id));
 		$ceco_id = $cc_hijos;
 		$info = $this->Reporte->bienesMueblesSlep($ceco_id);
 		$this->set('info', $info);
 		$this->set('infoCentroCosto', $infoCentroCosto);
+		$this->set('buscaEncargadoEstablecimiento', $buscaEncargadoEstablecimiento);
 		ob_clean();
 	}
 
@@ -2822,6 +2867,10 @@ class ReportesController extends AppController {
 	{
 		$this->layout = "ajax";
 		$logo = $this->Configuracion->obtieneLogo();
+		$infoCentroCosto = $this->CentroCosto->find('first', array('conditions' => array('CentroCosto.ceco_id' => $ceco_id)));
+		$nombreEstablecimiento = utf8_decode($infoCentroCosto['CentroCosto']['ceco_nombre']);
+		$rbd = $infoCentroCosto['CentroCosto']['ceco_rut'];
+		$comuna = utf8_decode($infoCentroCosto['Comuna']['comu_nombre']);
 		$fp = @fopen($_SERVER['DOCUMENT_ROOT']."/app/webroot/files/logo.png", "w");
 		
 		if ($fp == true) {
@@ -2834,7 +2883,7 @@ class ReportesController extends AppController {
 				$dompdf->load_html($html);
 				$dompdf->set_paper('A4', 'landscape');
 				$dompdf->render();									
-				$dompdf->stream("Bienes_Muebles_".date('d_m_Y_H_i_s').".pdf");		
+				$dompdf->stream('INVENTARIOMUEBLES.'.trim($rbd).'.'.str_replace(' ', '', trim($nombreEstablecimiento)).'.'.trim($comuna).'.pdf');		
 								
 			} catch (DOMPDF_Exception $e) {
 				echo $e->getMessage();
